@@ -1,0 +1,13 @@
+C:\Users\danie\DCorsono\target\debug\deps\uuid-0439d8d41c85545e.d: C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\lib.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\builder\mod.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\builder\error.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\error.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\parser\mod.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\parser\error.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\prelude.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\adapter\mod.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\v4.rs
+
+C:\Users\danie\DCorsono\target\debug\deps\libuuid-0439d8d41c85545e.rmeta: C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\lib.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\builder\mod.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\builder\error.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\error.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\parser\mod.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\parser\error.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\prelude.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\adapter\mod.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\v4.rs
+
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\lib.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\builder\mod.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\builder\error.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\error.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\parser\mod.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\parser\error.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\prelude.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\adapter\mod.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\uuid-0.8.2\src\v4.rs:

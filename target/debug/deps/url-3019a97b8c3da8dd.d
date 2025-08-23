@@ -1,0 +1,11 @@
+C:\Users\danie\DCorsono\target\debug\deps\url-3019a97b8c3da8dd.d: C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\lib.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\host.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\origin.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\parser.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\path_segments.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\slicing.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\quirks.rs
+
+C:\Users\danie\DCorsono\target\debug\deps\liburl-3019a97b8c3da8dd.rmeta: C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\lib.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\host.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\origin.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\parser.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\path_segments.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\slicing.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\quirks.rs
+
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\lib.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\host.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\origin.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\parser.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\path_segments.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\slicing.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.6\src\quirks.rs:

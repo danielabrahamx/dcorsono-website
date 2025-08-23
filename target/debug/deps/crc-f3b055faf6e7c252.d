@@ -1,0 +1,12 @@
+C:\Users\danie\DCorsono\target\debug\deps\crc-f3b055faf6e7c252.d: C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\lib.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\crc128.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\crc16.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\crc32.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\crc64.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\crc8.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\table.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\util.rs
+
+C:\Users\danie\DCorsono\target\debug\deps\libcrc-f3b055faf6e7c252.rmeta: C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\lib.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\crc128.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\crc16.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\crc32.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\crc64.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\crc8.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\table.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\util.rs
+
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\lib.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\crc128.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\crc16.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\crc32.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\crc64.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\crc8.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\table.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crc-3.3.0\src\util.rs:

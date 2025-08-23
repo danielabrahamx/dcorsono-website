@@ -1,0 +1,568 @@
+{% extends "base.html" %}
+
+{% block title %}Corsono - Quiet Luxury Clothing Brand | D'Corsono{% endblock %}
+{% block description %}Discover Corsono's premium clothing collection. Black and gold aesthetic embodying consciousness through style. Quiet luxury for the conscious consumer.{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="corsono-hero">
+    <div class="hero-background">
+        <div class="hero-overlay"></div>
+    </div>
+    
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1 class="hero-title">
+                <span class="brand-name">Corsono</span>
+                <span class="hero-subtitle">Quiet Luxury, Conscious Style</span>
+            </h1>
+            <p class="hero-description">
+                Where consciousness meets craftsmanship. Each piece embodies the alchemy of style, 
+                designed for those who understand that true luxury is an act of awareness.
+            </p>
+            <div class="hero-actions">
+                <a href="#collection" class="btn btn-primary">Explore Collection</a>
+                <a href="#philosophy" class="btn btn-secondary">Our Philosophy</a>
+            </div>
+        </div>
+        
+        <div class="hero-visual">
+            <div class="brand-symbol">
+                <div class="symbol-circle"></div>
+                <div class="symbol-accent"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Philosophy Section -->
+<section class="philosophy-section" id="philosophy">
+    <div class="container">
+        <div class="philosophy-content">
+            <div class="philosophy-text">
+                <h2 class="section-title">The Corsono Philosophy</h2>
+                <p class="philosophy-description">
+                    Corsono represents more than clothing—it's a manifestation of consciousness in material form. 
+                    Each piece is crafted with intention, embodying the principle that consciousness is an act, 
+                    not a state of being.
+                </p>
+                <div class="philosophy-points">
+                    <div class="philosophy-point">
+                        <div class="point-icon">🌟</div>
+                        <h3>Conscious Craftsmanship</h3>
+                        <p>Every detail considered, every stitch intentional</p>
+                    </div>
+                    <div class="philosophy-point">
+                        <div class="point-icon">⚡</div>
+                        <h3>Dynamic Energy</h3>
+                        <p>Clothing that moves with consciousness, not against it</p>
+                    </div>
+                    <div class="philosophy-point">
+                        <div class="point-icon">🔮</div>
+                        <h3>Alchemical Design</h3>
+                        <p>Transforming base materials into expressions of awareness</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="philosophy-visual">
+                <div class="philosophy-image">
+                    <div class="image-placeholder">
+                        <span>Consciousness in Motion</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Collection Section -->
+<section class="collection-section" id="collection">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">The Collection</h2>
+            <p class="section-subtitle">
+                Each piece is a statement of consciousness, designed for those who wear their awareness.
+            </p>
+        </div>
+        
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="t-shirts">T-Shirts</button>
+            <button class="filter-btn" data-category="hoodies">Hoodies</button>
+            <button class="filter-btn" data-category="outerwear">Outerwear</button>
+        </div>
+        
+        <!-- Products Grid -->
+        <div class="products-grid" id="products-grid">
+            <!-- Products will be loaded dynamically via JavaScript -->
+        </div>
+        
+        <!-- Load More Button -->
+        <div class="load-more-container">
+            <button class="btn btn-outline" id="load-more-btn">Load More</button>
+        </div>
+    </div>
+</section>
+
+<!-- Product Quick View Modal -->
+<div class="product-modal" id="product-modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+        <button class="modal-close" id="modal-close">&times;</button>
+        <div class="modal-body">
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img src="" alt="" id="modal-main-image">
+                </div>
+                <div class="thumbnail-images" id="modal-thumbnails">
+                    <!-- Thumbnails will be populated -->
+                </div>
+            </div>
+            
+            <div class="product-details">
+                <h2 class="product-title" id="modal-title"></h2>
+                <div class="product-price" id="modal-price"></div>
+                <div class="product-description" id="modal-description"></div>
+                
+                <div class="product-options">
+                    <div class="size-selector">
+                        <label for="modal-size">Size:</label>
+                        <select id="modal-size">
+                            <!-- Sizes will be populated -->
+                        </select>
+                    </div>
+                    
+                    <div class="color-selector">
+                        <label for="modal-color">Color:</label>
+                        <select id="modal-color">
+                            <!-- Colors will be populated -->
+                        </select>
+                    </div>
+                    
+                    <div class="quantity-selector">
+                        <label for="modal-quantity">Quantity:</label>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" data-action="decrease">-</button>
+                            <input type="number" id="modal-quantity" value="1" min="1" max="10">
+                            <button class="qty-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-actions">
+                    <button class="btn btn-primary" id="add-to-cart-btn">Add to Cart</button>
+                    <button class="btn btn-secondary" id="wishlist-btn">Add to Wishlist</button>
+                </div>
+                
+                <div class="product-meta">
+                    <div class="meta-item">
+                        <strong>Material:</strong>
+                        <span id="modal-material"></span>
+                    </div>
+                    <div class="meta-item">
+                        <strong>Care:</strong>
+                        <span id="modal-care"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Shopping Cart Sidebar -->
+<div class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+        <h3>Shopping Cart</h3>
+        <button class="cart-close" id="cart-close">&times;</button>
+    </div>
+    
+    <div class="cart-items" id="cart-items">
+        <!-- Cart items will be populated -->
+    </div>
+    
+    <div class="cart-summary">
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cart-total-price">$0.00</span>
+        </div>
+        <button class="btn btn-primary" id="checkout-btn">Proceed to Checkout</button>
+    </div>
+</div>
+
+<!-- Collection Highlights -->
+<section class="highlights-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Collection Highlights</h2>
+            <p class="section-subtitle">
+                Signature pieces that define the Corsono aesthetic
+            </p>
+        </div>
+        
+        <div class="highlights-grid">
+            <div class="highlight-item">
+                <div class="highlight-image">
+                    <div class="image-placeholder">
+                        <span>Classic Tee</span>
+                    </div>
+                </div>
+                <div class="highlight-content">
+                    <h3>The Classic Tee</h3>
+                    <p>Our signature piece, embodying simplicity and consciousness</p>
+                    <a href="#collection" class="highlight-link">View Details</a>
+                </div>
+            </div>
+            
+            <div class="highlight-item">
+                <div class="highlight-image">
+                    <div class="image-placeholder">
+                        <span>Luxury Hoodie</span>
+                    </div>
+                </div>
+                <div class="highlight-content">
+                    <h3>The Luxury Hoodie</h3>
+                    <p>Premium comfort meets conscious design</p>
+                    <a href="#collection" class="highlight-link">View Details</a>
+                </div>
+            </div>
+            
+            <div class="highlight-item">
+                <div class="highlight-image">
+                    <div class="image-placeholder">
+                        <span>Statement Jacket</span>
+                    </div>
+                </div>
+                <div class="highlight-content">
+                    <h3>The Statement Jacket</h3>
+                    <p>Bold design that speaks of awareness and intention</p>
+                    <a href="#collection" class="highlight-link">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sustainability Section -->
+<section class="sustainability-section">
+    <div class="container">
+        <div class="sustainability-content">
+            <div class="sustainability-text">
+                <h2 class="section-title">Conscious by Design</h2>
+                <p class="sustainability-description">
+                    Every Corsono piece is created with sustainability and consciousness in mind. 
+                    We believe that true luxury doesn't come at the expense of our planet or our values.
+                </p>
+                <div class="sustainability-features">
+                    <div class="feature">
+                        <div class="feature-icon">🌱</div>
+                        <h3>Organic Materials</h3>
+                        <p>Sustainably sourced, ethically produced</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">♻️</div>
+                        <h3>Circular Design</h3>
+                        <p>Built to last, designed to be cherished</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🤝</div>
+                        <h3>Fair Production</h3>
+                        <p>Supporting artisans and conscious practices</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sustainability-visual">
+                <div class="sustainability-image">
+                    <div class="image-placeholder">
+                        <span>Sustainable Luxury</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section">
+    <div class="container">
+        <div class="newsletter-content">
+            <h2 class="newsletter-title">Stay Conscious</h2>
+            <p class="newsletter-description">
+                Join the Corsono community and be the first to know about new collections, 
+                conscious living tips, and exclusive offers.
+            </p>
+            <form class="newsletter-form" id="corsono-newsletter">
+                <input type="email" placeholder="Enter your email" required class="newsletter-input">
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Corsono page specific functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        initCorsonoPage();
+    });
+    
+    function initCorsonoPage() {
+        // Initialize product loading
+        loadProducts();
+        
+        // Initialize category filtering
+        initCategoryFilter();
+        
+        // Initialize modal functionality
+        initProductModal();
+        
+        // Initialize cart functionality
+        initCartSidebar();
+        
+        // Initialize newsletter form
+        initNewsletterForm();
+    }
+    
+    function loadProducts() {
+        // This would typically fetch from your API
+        const products = [
+            {
+                id: 1,
+                name: 'Corsono Classic Tee',
+                price: 45.00,
+                category: 't-shirts',
+                description: 'Premium black t-shirt with subtle gold accents',
+                material: '100% Organic Cotton',
+                care: 'Machine wash cold, tumble dry low',
+                images: ['/images/corsono-classic-tee-1.jpg', '/images/corsono-classic-tee-2.jpg'],
+                sizes: ['XS', 'S', 'M', 'L', 'XL'],
+                colors: ['Black']
+            },
+            {
+                id: 2,
+                name: 'Corsono Luxury Hoodie',
+                price: 89.00,
+                category: 'hoodies',
+                description: 'Black hoodie with gold embroidery detailing',
+                material: 'Premium Cotton Blend',
+                care: 'Hand wash cold, air dry',
+                images: ['/images/corsono-hoodie-1.jpg', '/images/corsono-hoodie-2.jpg'],
+                sizes: ['S', 'M', 'L', 'XL'],
+                colors: ['Black']
+            },
+            {
+                id: 3,
+                name: 'Corsono Statement Jacket',
+                price: 125.00,
+                category: 'outerwear',
+                description: 'Bold black jacket with gold hardware',
+                material: 'Premium Leather',
+                care: 'Professional leather care recommended',
+                images: ['/images/corsono-jacket-1.jpg', '/images/corsono-jacket-2.jpg'],
+                sizes: ['M', 'L', 'XL'],
+                colors: ['Black']
+            }
+        ];
+        
+        renderProducts(products);
+    }
+    
+    function renderProducts(products) {
+        const grid = document.getElementById('products-grid');
+        grid.innerHTML = '';
+        
+        products.forEach(product => {
+            const productCard = createProductCard(product);
+            grid.appendChild(productCard);
+        });
+    }
+    
+    function createProductCard(product) {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+            <div class="product-image">
+                <div class="image-placeholder">
+                    <span>${product.name}</span>
+                </div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-name">${product.name}</h3>
+                <div class="product-price">$${product.price.toFixed(2)}</div>
+                <div class="product-category">${product.category}</div>
+                <button class="btn btn-outline quick-view-btn" data-product-id="${product.id}">Quick View</button>
+            </div>
+        `;
+        
+        // Add click handler for quick view
+        card.querySelector('.quick-view-btn').addEventListener('click', function() {
+            openProductModal(product);
+        });
+        
+        return card;
+    }
+    
+    function initCategoryFilter() {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                filterProducts(category);
+            });
+        });
+    }
+    
+    function filterProducts(category) {
+        // This would filter products based on category
+        console.log('Filtering by category:', category);
+        // For now, just reload all products
+        loadProducts();
+    }
+    
+    function openProductModal(product) {
+        const modal = document.getElementById('product-modal');
+        
+        // Populate modal with product data
+        document.getElementById('modal-title').textContent = product.name;
+        document.getElementById('modal-price').textContent = `$${product.price.toFixed(2)}`;
+        document.getElementById('modal-description').textContent = product.description;
+        document.getElementById('modal-material').textContent = product.material;
+        document.getElementById('modal-care').textContent = product.care;
+        
+        // Populate size selector
+        const sizeSelect = document.getElementById('modal-size');
+        sizeSelect.innerHTML = '';
+        product.sizes.forEach(size => {
+            const option = document.createElement('option');
+            option.value = size;
+            option.textContent = size;
+            sizeSelect.appendChild(option);
+        });
+        
+        // Populate color selector
+        const colorSelect = document.getElementById('modal-color');
+        colorSelect.innerHTML = '';
+        product.colors.forEach(color => {
+            const option = document.createElement('option');
+            option.value = color;
+            option.textContent = color;
+            colorSelect.appendChild(option);
+        });
+        
+        // Show modal
+        modal.classList.add('active');
+    }
+    
+    function initProductModal() {
+        const modal = document.getElementById('product-modal');
+        const closeBtn = document.getElementById('modal-close');
+        const overlay = modal.querySelector('.modal-overlay');
+        
+        // Close modal
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+        
+        closeBtn.addEventListener('click', closeModal);
+        overlay.addEventListener('click', closeModal);
+        
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+        
+        // Add to cart functionality
+        document.getElementById('add-to-cart-btn').addEventListener('click', function() {
+            const productId = 1; // This would come from the modal data
+            const size = document.getElementById('modal-size').value;
+            const color = document.getElementById('modal-color').value;
+            const quantity = parseInt(document.getElementById('modal-quantity').value);
+            
+            addToCart(productId, size, color, quantity);
+            closeModal();
+        });
+    }
+    
+    function initCartSidebar() {
+        const cartBtn = document.querySelector('.cart-icon');
+        const cartSidebar = document.getElementById('cart-sidebar');
+        const closeBtn = document.getElementById('cart-close');
+        
+        // Open cart
+        cartBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            cartSidebar.classList.add('active');
+        });
+        
+        // Close cart
+        closeBtn.addEventListener('click', function() {
+            cartSidebar.classList.remove('active');
+        });
+        
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && cartSidebar.classList.contains('active')) {
+                cartSidebar.classList.remove('active');
+            }
+        });
+    }
+    
+    function addToCart(productId, size, color, quantity) {
+        // This would add the product to the cart
+        console.log('Adding to cart:', { productId, size, color, quantity });
+        
+        // Show success notification
+        if (window.DCorsono && window.DCorsono.showNotification) {
+            window.DCorsono.showNotification('Product added to cart!', 'success');
+        }
+        
+        // Update cart count
+        updateCartCount();
+    }
+    
+    function updateCartCount() {
+        // This would update the cart count display
+        console.log('Updating cart count');
+    }
+    
+    function initNewsletterForm() {
+        const form = document.getElementById('corsono-newsletter');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = this.querySelector('.newsletter-input').value.trim();
+            
+            if (email && isValidEmail(email)) {
+                // Show success message
+                if (window.DCorsono && window.DCorsono.showNotification) {
+                    window.DCorsono.showNotification('Thank you for subscribing to Corsono updates!', 'success');
+                }
+                this.querySelector('.newsletter-input').value = '';
+            } else {
+                if (window.DCorsono && window.DCorsono.showNotification) {
+                    window.DCorsono.showNotification('Please enter a valid email address.', 'error');
+                }
+            }
+        });
+    }
+    
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+</script>
+{% endblock %}
+
+

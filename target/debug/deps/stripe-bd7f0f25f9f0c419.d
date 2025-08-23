@@ -1,0 +1,12 @@
+C:\Users\danie\DCorsono\target\debug\deps\stripe-bd7f0f25f9f0c419.d: C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\lib.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\connection.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\customer.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\subscription.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\card.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\charge.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\decoder.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\util.rs
+
+C:\Users\danie\DCorsono\target\debug\deps\libstripe-bd7f0f25f9f0c419.rmeta: C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\lib.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\connection.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\customer.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\subscription.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\card.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\charge.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\decoder.rs C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\util.rs
+
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\lib.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\connection.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\customer.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\subscription.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\card.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\charge.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\decoder.rs:
+C:\Users\danie\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\stripe-0.0.5\src\util.rs:
