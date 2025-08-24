@@ -182,3 +182,4 @@ For questions or issues:
 The website embodies the philosophy that consciousness is an act, not a state of being. Each section represents a different manifestation of that principle through clothing, technology, wisdom, and mastery.
 
 
+

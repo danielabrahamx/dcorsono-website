@@ -162,3 +162,4 @@ INSERT INTO blog_posts (title, content, excerpt, author, categories, tags, featu
 ('Muay Thai as Moving Meditation: The Flow State in Combat', 'In the heat of combat, when technique becomes second nature and the mind enters a state of pure awareness, Muay Thai transcends physical exercise...', 'How Muay Thai training cultivates consciousness through movement and technique.', 'Danny Abraham', ARRAY['Muay Thai', 'The Mind'], ARRAY['muay-thai', 'meditation', 'flow-state', 'consciousness'], '/images/blog/muay-thai-meditation.jpg', true, NOW());
 
 
+
