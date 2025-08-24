@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Corsono Gallery – Upload & View</title>
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="stylesheet" href="/static/css/components.css" />
+    <style>
+        body { background: #000; color: #fff; }
+        .page { max-width: 1100px; margin: 0 auto; padding: 100px 20px 60px; }
+        .heading { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+        .heading h1 { font-size: 2rem; color: #FFD700; margin: 0; }
+        .upload-card { border: 1px solid rgba(255,215,0,0.3); border-radius: 12px; padding: 20px; margin: 24px 0; background: rgba(255,255,255,0.04); }
+        .upload-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+        .upload-row input[type="file"] { background: rgba(255,255,255,0.06); padding: 10px; border-radius: 8px; border: 1px dashed rgba(255,215,0,0.4); }
+        .btn { cursor:pointer; }
+        .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; }
+        .card { position: relative; border: 1px solid rgba(255,215,0,0.25); border-radius: 10px; overflow: hidden; background: rgba(255,255,255,0.03); }
+        .card img { width: 100%; height: 220px; object-fit: cover; display:block; }
+        .card .meta { padding: 10px; font-size: 0.9rem; color: #ccc; display:flex; align-items:center; justify-content:space-between; }
+        .empty { text-align:center; padding: 40px; color: #bbb; border: 1px dashed rgba(255,215,0,0.3); border-radius: 10px; }
+        .back-link { color: #FFD700; text-decoration: none; }
+        .progress { height: 6px; background: rgba(255,255,255,0.08); border-radius: 9999px; margin-top: 10px; overflow: hidden; display:none; }
+        .bar { height: 100%; width: 0%; background: linear-gradient(90deg, #B8860B, #FFD700); transition: width .2s ease; }
+    </style>
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand"><a class="brand-logo back-link" href="/">D'Corsono</a></div>
+            <div class="nav-actions"><a class="back-link" href="/">Back to Home</a></div>
+        </div>
+    </nav>
+
+    <main class="page">
+        <div class="heading">
+            <h1>Corsono Gallery</h1>
+            <a class="btn btn-outline" href="/">Back</a>
+        </div>
+
+        <section class="upload-card">
+            <h2 style="margin-top:0">Upload Photos</h2>
+            <p style="color:#bbb; margin-top: 6px">Select one or more images to add to the Corsono gallery. Supported types: JPG, PNG, WEBP. Max ~10MB each.</p>
+            <div class="upload-row">
+                <input id="file-input" type="file" accept="image/*" multiple />
+                <button id="upload-btn" class="btn btn-primary">Upload</button>
+                <div id="upload-status" style="color:#bbb"></div>
+            </div>
+            <div class="progress" id="progress"><div class="bar" id="bar"></div></div>
+        </section>
+
+        <section>
+            <h2 style="margin: 0 0 8px 0">Gallery</h2>
+            <div id="gallery" class="grid"></div>
+            <div id="empty" class="empty" style="display:none">No photos yet. Upload above to get started.</div>
+        </section>
+    </main>
+
+    <script>
+    async function fetchGallery() {
+        const galleryEl = document.getElementById('gallery');
+        const emptyEl = document.getElementById('empty');
+        galleryEl.innerHTML = '';
+        try {
+            const res = await fetch('/api/corsono/gallery');
+            if (!res.ok) throw new Error('Failed to load gallery');
+            const data = await res.json();
+            if (!Array.isArray(data) || data.length === 0) {
+                emptyEl.style.display = 'block';
+                return;
+            }
+            emptyEl.style.display = 'none';
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <img src="${item.url}" alt="${item.name}" loading="lazy" />
+                    <div class="meta">
+                        <span title="${item.name}">${item.name}</span>
+                        <a class="back-link" href="${item.url}" target="_blank">Open</a>
+                    </div>
+                `;
+                galleryEl.appendChild(card);
+            });
+        } catch (e) {
+            console.error(e);
+            document.getElementById('empty').textContent = 'Failed to load gallery';
+            document.getElementById('empty').style.display = 'block';
+        }
+    }
+
+    async function uploadFiles(files) {
+        if (!files || files.length === 0) return;
+        const status = document.getElementById('upload-status');
+        const progress = document.getElementById('progress');
+        const bar = document.getElementById('bar');
+        status.textContent = '';
+        progress.style.display = 'block';
+        bar.style.width = '0%';
+
+        const form = new FormData();
+        Array.from(files).forEach(f => form.append('photos', f));
+
+        try {
+            const xhr = new XMLHttpRequest();
+            const promise = new Promise((resolve, reject) => {
+                xhr.upload.addEventListener('progress', (e) => {
+                    if (e.lengthComputable) {
+                        const pct = Math.round((e.loaded / e.total) * 100);
+                        bar.style.width = pct + '%';
+                    }
+                });
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status >= 200 && xhr.status < 300) resolve();
+                        else reject(new Error('Upload failed: ' + xhr.status));
+                    }
+                };
+                xhr.open('POST', '/api/corsono/gallery/upload');
+                xhr.send(form);
+            });
+            await promise;
+            status.textContent = 'Upload complete';
+            document.getElementById('file-input').value = '';
+            await fetchGallery();
+        } catch (e) {
+            console.error(e);
+            status.textContent = 'Upload failed';
+        } finally {
+            setTimeout(() => { progress.style.display = 'none'; bar.style.width = '0%'; }, 600);
+        }
+    }
+
+    document.getElementById('upload-btn').addEventListener('click', () => {
+        const files = document.getElementById('file-input').files;
+        uploadFiles(files);
+    });
+
+    // Initial load
+    fetchGallery();
+    </script>
+</body>
+</html>
