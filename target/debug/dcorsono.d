@@ -1,1 +1,1 @@
-C:\Users\danie\DCorsono\target\debug\dcorsono.exe: C:\Users\danie\DCorsono\index.html C:\Users\danie\DCorsono\src\main.rs
+C:\Users\danie\DCorsono\target\debug\dcorsono.exe: C:\Users\danie\DCorsono\index.html C:\Users\danie\DCorsono\src\main.rs C:\Users\danie\DCorsono\templates\art-gallery.html C:\Users\danie\DCorsono\templates\corsono-gallery.html

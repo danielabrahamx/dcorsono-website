@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inner Gallery – D'Corsono Art Collection</title>
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="stylesheet" href="/static/css/components.css" />
+    <style>
+        body { background: #111; color: #eee; font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        main { max-width: 1200px; margin: 0 auto; padding: 24px; }
+        h1 { color: gold; }
+        #gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+        .card { 
+            background: transparent; 
+            border-radius: 0; 
+            overflow: hidden; 
+            box-shadow: none; 
+            display: block; 
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card .image-container {
+            aspect-ratio: 1/1;
+            width: 100%;
+            overflow: hidden;
+            background: #111;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        .card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .card:hover img {
+            transform: scale(1.05);
+        }
+        .meta { 
+            display: none;
+        }
+        .meta span { max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .back-link { color: gold; text-decoration: none; font-weight: 500; }
+        .back-link:hover { text-decoration: underline; }
+        .btn { background: gold; color: #111; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 500; }
+        .btn-primary { background: gold; color: #111; }
+        .btn:hover { opacity: 0.9; }
+        .upload-card { 
+            border: 1px solid rgba(255,215,0,0.3); 
+            border-radius: 12px; 
+            padding: 20px; 
+            margin: 24px 0; 
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(10px);
+        }
+        .upload-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+        .upload-row input[type="file"] { 
+            background: rgba(255,255,255,0.06); 
+            padding: 10px; 
+            border-radius: 8px; 
+            border: 1px dashed rgba(255,215,0,0.4); 
+            color: #eee;
+        }
+        #progress { display:none; background: #333; border-radius: 8px; height: 6px; margin-top: 12px; }
+        #bar { background: gold; height: 100%; width: 0%; transition: width 0.3s; }
+        .empty { text-align: center; padding: 48px; color: #999; font-style: italic; }
+        .category-filter {
+            display: flex;
+            gap: 12px;
+            margin: 24px 0;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid rgba(255,215,0,0.3);
+            color: #ccc;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: rgba(255,215,0,0.1);
+            border-color: rgba(255,215,0,0.6);
+            color: gold;
+        }
+        .gallery-stats {
+            display: flex;
+            gap: 24px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: #999;
+        }
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .gallery-description {
+            background: rgba(255,255,255,0.02);
+            border-left: 3px solid gold;
+            padding: 20px;
+            margin: 24px 0;
+            border-radius: 8px;
+            font-style: italic;
+            color: #ccc;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            cursor: pointer;
+        }
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .modal-close:hover {
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+    <header style="background: #111; padding: 16px; border-bottom: 1px solid #333;">
+        <nav style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <h1 style="margin: 0; color: gold;">D'Corsono</h1>
+            <div>
+                <a href="/" style="color: #eee; text-decoration: none; margin-right: 16px;">Home</a>
+                <a href="/corsono/gallery" style="color: #eee; text-decoration: none; margin-right: 16px;">Photo Gallery</a>
+                <a href="/art/gallery" style="color: gold; text-decoration: none;">Art Gallery</a>
+            </div>
+        </nav>
+    </header>
+    <main class="page">
+        <div class="heading" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+            <div>
+                <h1>Inner Gallery</h1>
+                <p style="color: #ccc; margin: 8px 0 0 0;">Original artwork and creative expressions exploring consciousness through visual art</p>
+            </div>
+            <a class="btn btn-outline" href="/" style="background: transparent; color: gold; border: 1px solid gold;">Back Home</a>
+        </div>
+
+        <div class="gallery-description">
+            <strong>Welcome to the Inner Gallery</strong> – A sacred space where consciousness meets creativity. 
+            This collection showcases original artwork, digital creations, and visual explorations that 
+            delve into themes of transformation, spirituality, and the alchemy of being.
+        </div>
+
+        <section class="upload-card" id="drop-zone">
+            <h2 style="margin-top:0; color: gold;">Upload Artwork</h2>
+            <p>Share your creative expressions with the community. Drag and drop files here or select below.</p>
+            <div class="upload-row">
+                <input type="file" id="file-input" multiple accept="image/*,video/*">
+                <button id="upload-btn" class="btn btn-primary">Upload</button>
+                <div id="upload-status" style="color:#bbb"></div>
+            </div>
+            <div id="progress">
+                <div id="bar"></div>
+            </div>
+        </section>
+
+        <section>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <h2 style="margin: 0; color: gold;">Art Collection</h2>
+                <div class="gallery-stats">
+                    <div class="stat">
+                        <span>🎨</span>
+                        <span id="art-count">0 pieces</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-filter">
+                <button class="filter-btn active" data-category="all">All Artwork</button>
+                <button class="filter-btn" data-category="digital">Digital Art</button>
+                <button class="filter-btn" data-category="traditional">Traditional</button>
+                <button class="filter-btn" data-category="mixed">Mixed Media</button>
+                <button class="filter-btn" data-category="consciousness">Consciousness</button>
+            </div>
+            
+            <div id="gallery" class="grid"></div>
+            <div id="empty" class="empty" style="display:none">
+                <h3 style="color: gold;">No artwork yet</h3>
+                <p>Upload your first piece above to start building the Inner Gallery collection.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for enlarged images -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+    async function fetchGallery() {
+        const galleryEl = document.getElementById('gallery');
+        const emptyEl = document.getElementById('empty');
+        const artCountEl = document.getElementById('art-count');
+        galleryEl.innerHTML = '';
+        
+        try {
+            const res = await fetch('/api/art/gallery');
+            if (!res.ok) throw new Error('Failed to load gallery');
+            const data = await res.json();
+            
+            if (!Array.isArray(data) || data.length === 0) {
+                emptyEl.style.display = 'block';
+                artCountEl.textContent = '0 pieces';
+                return;
+            }
+            
+            emptyEl.style.display = 'none';
+            artCountEl.textContent = `${data.length} piece${data.length !== 1 ? 's' : ''}`;
+            
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="image-container" onclick="openModal('${item.url}')">
+                        <img src="${item.url}" alt="Artwork" loading="lazy" />
+                    </div>
+                `;
+                galleryEl.appendChild(card);
+            });
+        } catch (e) {
+            console.error(e);
+            document.getElementById('empty').textContent = 'Failed to load gallery';
+            document.getElementById('empty').style.display = 'block';
+            artCountEl.textContent = '0 pieces';
+        }
+    }
+
+    async function uploadFiles(files) {
+        if (!files || files.length === 0) return;
+        const status = document.getElementById('upload-status');
+        const progress = document.getElementById('progress');
+        const bar = document.getElementById('bar');
+        status.textContent = '';
+        progress.style.display = 'block';
+        bar.style.width = '0%';
+
+        const form = new FormData();
+        Array.from(files).forEach(f => form.append('artwork', f));
+
+        try {
+            const xhr = new XMLHttpRequest();
+            const promise = new Promise((resolve, reject) => {
+                xhr.upload.addEventListener('progress', (e) => {
+                    if (e.lengthComputable) {
+                        const pct = Math.round((e.loaded / e.total) * 100);
+                        bar.style.width = pct + '%';
+                    }
+                });
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status >= 200 && xhr.status < 300) resolve();
+                        else reject(new Error('Upload failed: ' + xhr.status));
+                    }
+                };
+                xhr.open('POST', '/api/art/gallery/upload');
+                xhr.send(form);
+            });
+            await promise;
+            status.textContent = 'Upload complete! ✨';
+            document.getElementById('file-input').value = '';
+            await fetchGallery();
+        } catch (e) {
+            console.error(e);
+            status.textContent = 'Upload failed';
+        } finally {
+            setTimeout(() => { 
+                progress.style.display = 'none'; 
+                bar.style.width = '0%';
+                status.textContent = '';
+            }, 2000);
+        }
+    }
+
+    document.getElementById('upload-btn').addEventListener('click', () => {
+        const files = document.getElementById('file-input').files;
+        uploadFiles(files);
+    });
+
+    // Drag and drop support
+    const dropZone = document.getElementById('drop-zone');
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = 'gold';
+        dropZone.style.background = 'rgba(255,215,0,0.1)';
+    });
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.style.borderColor = 'rgba(255,215,0,0.3)';
+        dropZone.style.background = 'rgba(255,255,255,0.04)';
+    });
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = 'rgba(255,215,0,0.3)';
+        dropZone.style.background = 'rgba(255,255,255,0.04)';
+        const files = e.dataTransfer.files;
+        uploadFiles(files);
+    });
+
+    // Category filtering
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            // For now, just reload all - can implement filtering later
+            fetchGallery();
+        });
+    });
+
+    // Modal functionality
+    function openModal(imageSrc) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        modal.classList.add('show');
+        modalImg.src = imageSrc;
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('imageModal');
+        modal.classList.remove('show');
+    }
+
+    // Close modal when clicking outside the image or on close button
+    document.getElementById('imageModal').addEventListener('click', closeModal);
+    document.querySelector('.modal-close').addEventListener('click', closeModal);
+    
+    // Prevent modal from closing when clicking on the image itself
+    document.getElementById('modalImage').addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+
+    // Initial load
+    fetchGallery();
+    </script>
+</body>
+</html>

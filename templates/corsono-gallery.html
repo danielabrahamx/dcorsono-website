@@ -7,47 +7,112 @@
     <link rel="stylesheet" href="/static/css/main.css" />
     <link rel="stylesheet" href="/static/css/components.css" />
     <style>
-        body { background: #000; color: #fff; }
-        .page { max-width: 1100px; margin: 0 auto; padding: 100px 20px 60px; }
-        .heading { display:flex; align-items:center; justify-content:space-between; gap:16px; }
-        .heading h1 { font-size: 2rem; color: #FFD700; margin: 0; }
+        body { background: #111; color: #eee; font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        main { max-width: 1200px; margin: 0 auto; padding: 24px; }
+        h1 { color: gold; }
+        #gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+        .card { 
+            background: transparent; 
+            border-radius: 0; 
+            overflow: hidden; 
+            box-shadow: none; 
+            display: block; 
+        }
+        .card .image-container {
+            aspect-ratio: 4/3;
+            width: 100%;
+            overflow: hidden;
+            background: #111;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        .card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover;
+            display: block;
+        }
+        .meta { 
+            display: none;
+        }
+        .meta span { max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .back-link { color: gold; text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
+        .btn { background: gold; color: #111; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; }
+        .btn-primary { background: gold; color: #111; }
+        .btn:hover { opacity: 0.9; }
         .upload-card { border: 1px solid rgba(255,215,0,0.3); border-radius: 12px; padding: 20px; margin: 24px 0; background: rgba(255,255,255,0.04); }
         .upload-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
         .upload-row input[type="file"] { background: rgba(255,255,255,0.06); padding: 10px; border-radius: 8px; border: 1px dashed rgba(255,215,0,0.4); }
-        .btn { cursor:pointer; }
-        .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; }
-        .card { position: relative; border: 1px solid rgba(255,215,0,0.25); border-radius: 10px; overflow: hidden; background: rgba(255,255,255,0.03); }
-        .card img { width: 100%; height: 220px; object-fit: cover; display:block; }
-        .card .meta { padding: 10px; font-size: 0.9rem; color: #ccc; display:flex; align-items:center; justify-content:space-between; }
-        .empty { text-align:center; padding: 40px; color: #bbb; border: 1px dashed rgba(255,215,0,0.3); border-radius: 10px; }
-        .back-link { color: #FFD700; text-decoration: none; }
-        .progress { height: 6px; background: rgba(255,255,255,0.08); border-radius: 9999px; margin-top: 10px; overflow: hidden; display:none; }
-        .bar { height: 100%; width: 0%; background: linear-gradient(90deg, #B8860B, #FFD700); transition: width .2s ease; }
+        #progress { display:none; background: #333; border-radius: 8px; height: 6px; margin-top: 12px; }
+        #bar { background: gold; height: 100%; width: 0%; transition: width 0.3s; }
+        .empty { text-align: center; padding: 24px; color: #999; font-style: italic; }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            cursor: pointer;
+        }
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .modal-close:hover {
+            color: gold;
+        }
     </style>
 </head>
 <body>
-    <nav class="main-nav">
-        <div class="nav-container">
-            <div class="nav-brand"><a class="brand-logo back-link" href="/">D'Corsono</a></div>
-            <div class="nav-actions"><a class="back-link" href="/">Back to Home</a></div>
-        </div>
-    </nav>
-
+    <header style="background: #111; padding: 16px; border-bottom: 1px solid #333;">
+        <nav style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <h1 style="margin: 0; color: gold;">DCorsono</h1>
+            <div>
+                <a href="/" style="color: #eee; text-decoration: none; margin-right: 16px;">Home</a>
+                <a href="/corsono/gallery" style="color: #eee; text-decoration: none;">Gallery</a>
+            </div>
+        </nav>
+    </header>
     <main class="page">
         <div class="heading">
             <h1>Corsono Gallery</h1>
             <a class="btn btn-outline" href="/">Back</a>
         </div>
 
-        <section class="upload-card">
+        <section class="upload-card" id="drop-zone">
             <h2 style="margin-top:0">Upload Photos</h2>
-            <p style="color:#bbb; margin-top: 6px">Select one or more images to add to the Corsono gallery. Supported types: JPG, PNG, WEBP. Max ~10MB each.</p>
+            <p>Drag and drop files here or select below</p>
             <div class="upload-row">
-                <input id="file-input" type="file" accept="image/*" multiple />
+                <input type="file" id="file-input" multiple accept="image/*">
                 <button id="upload-btn" class="btn btn-primary">Upload</button>
                 <div id="upload-status" style="color:#bbb"></div>
             </div>
-            <div class="progress" id="progress"><div class="bar" id="bar"></div></div>
+            <div id="progress">
+                <div id="bar"></div>
+            </div>
         </section>
 
         <section>
@@ -56,6 +121,12 @@
             <div id="empty" class="empty" style="display:none">No photos yet. Upload above to get started.</div>
         </section>
     </main>
+
+    <!-- Modal for enlarged images -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
 
     <script>
     async function fetchGallery() {
@@ -75,10 +146,8 @@
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
-                    <img src="${item.url}" alt="${item.name}" loading="lazy" />
-                    <div class="meta">
-                        <span title="${item.name}">${item.name}</span>
-                        <a class="back-link" href="${item.url}" target="_blank">Open</a>
+                    <div class="image-container" onclick="openModal('${item.url}')">
+                        <img src="${item.url}" alt="Gallery image" loading="lazy" />
                     </div>
                 `;
                 galleryEl.appendChild(card);
@@ -135,6 +204,51 @@
     document.getElementById('upload-btn').addEventListener('click', () => {
         const files = document.getElementById('file-input').files;
         uploadFiles(files);
+    });
+
+    // Drag and drop support
+    const dropZone = document.getElementById('drop-zone');
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = 'gold';
+    });
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.style.borderColor = 'rgba(255,215,0,0.3)';
+    });
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = 'rgba(255,215,0,0.3)';
+        const files = e.dataTransfer.files;
+        uploadFiles(files);
+    });
+
+    // Modal functionality
+    function openModal(imageSrc) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        modal.classList.add('show');
+        modalImg.src = imageSrc;
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('imageModal');
+        modal.classList.remove('show');
+    }
+
+    // Close modal when clicking outside the image or on close button
+    document.getElementById('imageModal').addEventListener('click', closeModal);
+    document.querySelector('.modal-close').addEventListener('click', closeModal);
+    
+    // Prevent modal from closing when clicking on the image itself
+    document.getElementById('modalImage').addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
     });
 
     // Initial load
