@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProductImageUpload from './ProductImageUpload';
+import { ProtectedRoute } from '../auth/AdminAuth';
 
 interface ProductForm {
   name: string;
@@ -14,7 +15,7 @@ interface ProductForm {
   images: string[];
 }
 
-const ProductAdmin: React.FC = () => {
+const ProductAdminContent: React.FC = () => {
   const [product, setProduct] = useState<ProductForm>({
     name: '',
     price: 0,
@@ -415,6 +416,14 @@ ${JSON.stringify(productObject, null, 2)}`;
         )}
       </div>
     </div>
+  );
+};
+
+const ProductAdmin: React.FC = () => {
+  return (
+    <ProtectedRoute>
+      <ProductAdminContent />
+    </ProtectedRoute>
   );
 };
 

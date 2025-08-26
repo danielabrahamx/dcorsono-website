@@ -31,14 +31,40 @@ const Gallery: React.FC<GalleryProps> = ({
   const fetchGallery = useCallback(async () => {
     try {
       const response = await fetch(apiEndpoint);
-      const data = await response.json();
-      setItems(data);
+      if (response.ok) {
+        const data = await response.json();
+        setItems(data);
+      } else {
+        // Fallback to static images for Netlify deployment
+        const staticImages = await loadStaticImages(apiEndpoint);
+        setItems(staticImages);
+      }
       setLoading(false);
     } catch (error) {
-      console.error('Failed to load gallery:', error);
+      console.error('Backend not available, loading static images:', error);
+      // Fallback to static images for Netlify deployment
+      const staticImages = await loadStaticImages(apiEndpoint);
+      setItems(staticImages);
       setLoading(false);
     }
   }, [apiEndpoint]);
+
+  const loadStaticImages = async (endpoint: string): Promise<GalleryItem[]> => {
+    // For Netlify deployment, use pre-defined static images
+    if (endpoint.includes('corsono')) {
+      return [
+        { name: 'Golden Dawn Hoodie', url: '/images/products/golden-dawn-hoodie-1.jpg' },
+        { name: 'Golden Dawn Bottoms', url: '/images/products/golden-dawn-bottoms-1.jpg' },
+        // Add more Corsono images here when you have them
+      ].filter(item => item.url); // Filter out any undefined images
+    } else {
+      // Art gallery static images - add your art pieces here
+      return [
+        // Add art gallery images here when you have them
+        // { name: 'artwork-1.jpg', url: '/images/products/artwork-1.jpg' },
+      ];
+    }
+  };
 
   useEffect(() => {
     fetchGallery();
@@ -162,6 +188,17 @@ const Gallery: React.FC<GalleryProps> = ({
             </div>
             <h3>Upload Images</h3>
             <p style={{ margin: '16px 0', color: '#999' }}>Drag and drop your images here or click to select</p>
+            <p style={{ 
+              fontSize: '0.8rem', 
+              color: '#666', 
+              marginTop: '8px',
+              padding: '8px',
+              background: 'rgba(255, 215, 0, 0.1)',
+              borderRadius: '4px',
+              border: '1px solid rgba(255, 215, 0, 0.2)'
+            }}>
+              💡 <strong>Note:</strong> Image uploads work locally. On Netlify, images are pre-loaded for display.
+            </p>
             
             <input
               type="file"

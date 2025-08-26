@@ -97,7 +97,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
           backdropFilter: 'blur(10px)',
           border: '1px solid rgba(255, 255, 255, 0.1)',
           borderRadius: '12px',
-          padding: '40px',
+          padding: '40px 20px',
           width: '100%',
           maxWidth: '400px',
           textAlign: 'center'

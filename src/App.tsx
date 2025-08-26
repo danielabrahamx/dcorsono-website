@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import HomePage from './components/HomePage';
 import Gallery from './components/Gallery';
+import CorsonoPage from './components/CorsonoPage';
+import Footer from './components/Footer';
 import './App.css';
 
 const App: React.FC = () => {
@@ -13,6 +15,7 @@ const App: React.FC = () => {
         <main style={{ paddingTop: '80px' }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/corsono" element={<CorsonoPage />} />
           <Route 
             path="/corsono-gallery" 
             element={
@@ -35,13 +38,12 @@ const App: React.FC = () => {
               />
             } 
           />
-          {/* Placeholder routes for future sections */}
-          <Route path="/corsono" element={<div style={{padding: '100px 20px', textAlign: 'center', color: '#ccc'}}><h1>Corsono Collection Coming Soon</h1></div>} />
           <Route path="/inner-library" element={<div style={{padding: '100px 20px', textAlign: 'center', color: '#ccc'}}><h1>Inner Library Coming Soon</h1></div>} />
           <Route path="/about" element={<div style={{padding: '100px 20px', textAlign: 'center', color: '#ccc'}}><h1>About Page Coming Soon</h1></div>} />
           <Route path="/contact" element={<div style={{padding: '100px 20px', textAlign: 'center', color: '#ccc'}}><h1>Contact Page Coming Soon</h1></div>} />
         </Routes>
         </main>
+        <Footer />
       </div>
     </Router>
   );

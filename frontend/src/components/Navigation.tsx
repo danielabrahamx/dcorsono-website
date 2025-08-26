@@ -21,13 +21,15 @@ const Navigation: React.FC = () => {
         <div className="header-content" style={{ gap: 16 }}>
           <Link to="/" className="brand" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
             <img 
-              src="/images/logo.png" 
+              src="/images/logo.png?v=1" 
               alt="D'Corsono Logo" 
               style={{ 
                 height: '40px', 
                 width: 'auto',
                 filter: 'brightness(1.1)',
-                transition: 'all 0.3s ease'
+                transition: 'all 0.3s ease',
+                maxWidth: '100%',
+                objectFit: 'contain'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'scale(1.05)';
@@ -36,6 +38,18 @@ const Navigation: React.FC = () => {
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'scale(1)';
                 e.currentTarget.style.filter = 'brightness(1.1)';
+              }}
+              onError={(e) => {
+                console.error('Logo failed to load:', e.currentTarget.src);
+                // Fallback to text if image fails
+                e.currentTarget.style.display = 'none';
+                const fallbackText = e.currentTarget.nextElementSibling as HTMLElement;
+                if (fallbackText && fallbackText.style) {
+                  fallbackText.style.marginLeft = '0';
+                }
+              }}
+              onLoad={(e) => {
+                console.log('Logo loaded successfully:', e.currentTarget.src);
               }}
             />
             <span style={{ 
