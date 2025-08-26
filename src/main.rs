@@ -1,6 +1,6 @@
 use axum::{
-    extract::Multipart,
-    http::StatusCode,
+    extract::{Multipart, Request},
+    http::{StatusCode, HeaderMap},
     response::Html,
     routing::{get, post},
     Json, Router,
@@ -108,7 +108,22 @@ async fn api_list_gallery() -> Json<Vec<GalleryItem>> {
     Json(items)
 }
 
-async fn api_upload_gallery(mut multipart: Multipart) -> Result<Json<serde_json::Value>, (StatusCode, String)> {
+// Simple authentication check
+fn check_admin_auth(headers: &HeaderMap) -> bool {
+    if let Some(auth_header) = headers.get("authorization") {
+        if let Ok(auth_str) = auth_header.to_str() {
+            // Simple password check - in production, use proper JWT or API keys
+            return auth_str == "Bearer dcorsono2024!";
+        }
+    }
+    false
+}
+
+async fn api_upload_gallery(headers: HeaderMap, mut multipart: Multipart) -> Result<Json<serde_json::Value>, (StatusCode, String)> {
+    // Check authentication
+    if !check_admin_auth(&headers) {
+        return Err((StatusCode::UNAUTHORIZED, "Unauthorized: Admin access required".to_string()));
+    }
     // Ensure gallery directory exists
     if let Err(e) = tokio_fs::create_dir_all("images/corsono").await {
         return Err((StatusCode::INTERNAL_SERVER_ERROR, format!("Failed to ensure directory: {}", e)));
@@ -176,7 +191,11 @@ async fn api_list_art_gallery() -> Json<Vec<GalleryItem>> {
     Json(items)
 }
 
-async fn api_upload_art_gallery(mut multipart: Multipart) -> Result<Json<serde_json::Value>, (StatusCode, String)> {
+async fn api_upload_art_gallery(headers: HeaderMap, mut multipart: Multipart) -> Result<Json<serde_json::Value>, (StatusCode, String)> {
+    // Check authentication
+    if !check_admin_auth(&headers) {
+        return Err((StatusCode::UNAUTHORIZED, "Unauthorized: Admin access required".to_string()));
+    }
     // Ensure gallery directory exists
     if let Err(e) = tokio_fs::create_dir_all("images/art").await {
         return Err((StatusCode::INTERNAL_SERVER_ERROR, format!("Failed to ensure directory: {}", e)));

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useAuth } from './auth/AdminAuth';
 
 interface GalleryItem {
   name: string;
@@ -25,6 +26,7 @@ const Gallery: React.FC<GalleryProps> = ({
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const { isAuthenticated } = useAuth();
 
   const fetchGallery = useCallback(async () => {
     try {
@@ -70,11 +72,17 @@ const Gallery: React.FC<GalleryProps> = ({
             if (xhr.status >= 200 && xhr.status < 300) {
               resolve(xhr.response);
             } else {
-              reject(new Error('Upload failed'));
+              reject(new Error('Upload failed: ' + xhr.statusText));
             }
           }
         };
         xhr.open('POST', uploadEndpoint);
+        
+        // Add authorization header for authenticated users
+        if (isAuthenticated) {
+          xhr.setRequestHeader('Authorization', 'Bearer dcorsono2024!');
+        }
+        
         xhr.send(formData);
       });
 
@@ -131,46 +139,48 @@ const Gallery: React.FC<GalleryProps> = ({
       </motion.header>
 
       <div className="container">
-        {/* Upload Area */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="upload-area"
-          onDrop={handleDrop}
-          onDragOver={(e) => e.preventDefault()}
-        >
-          <div className="upload-emoji">📸</div>
-          <h3>Upload Images</h3>
-          <p style={{ margin: '16px 0', color: '#999' }}>Drag and drop your images here or click to select</p>
-          
-          <input
-            type="file"
-            multiple
-            accept="image/*,video/*"
-            onChange={handleFileSelect}
-            id="file-upload"
-          />
-          <label htmlFor="file-upload" className="btn">
-            Select Files
-          </label>
+        {/* Upload Area - Only visible to authenticated admin */}
+        {isAuthenticated && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="upload-area"
+            onDrop={handleDrop}
+            onDragOver={(e) => e.preventDefault()}
+          >
+            <div className="upload-emoji">📸</div>
+            <h3>Upload Images</h3>
+            <p style={{ margin: '16px 0', color: '#999' }}>Drag and drop your images here or click to select</p>
+            
+            <input
+              type="file"
+              multiple
+              accept="image/*,video/*"
+              onChange={handleFileSelect}
+              id="file-upload"
+            />
+            <label htmlFor="file-upload" className="btn">
+              Select Files
+            </label>
 
-          {uploading && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              style={{ marginTop: '16px' }}
-            >
-              <div className="progress">
-                <motion.div
-                  className="progress-bar"
-                  initial={{ width: 0 }}
-                  animate={{ width: `${uploadProgress}%` }}
-                />
-              </div>
-              <p style={{ fontSize: '14px', color: '#999' }}>Uploading... {uploadProgress}%</p>
-            </motion.div>
-          )}
-        </motion.div>
+            {uploading && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                style={{ marginTop: '16px' }}
+              >
+                <div className="progress">
+                  <motion.div
+                    className="progress-bar"
+                    initial={{ width: 0 }}
+                    animate={{ width: `${uploadProgress}%` }}
+                  />
+                </div>
+                <p style={{ fontSize: '14px', color: '#999' }}>Uploading... {uploadProgress}%</p>
+              </motion.div>
+            )}
+          </motion.div>
+        )}
 
         {/* Gallery Grid */}
         {items.length > 0 ? (

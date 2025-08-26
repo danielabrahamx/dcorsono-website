@@ -11,7 +11,7 @@ const ProductImageUpload: React.FC<ProductImageUploadProps> = ({ productName, on
   const [uploadedImages, setUploadedImages] = useState<string[]>([]);
   const [message, setMessage] = useState<string>('');
 
-  const uploadImages = async (files: FileList) => {
+  const uploadImages = useCallback(async (files: FileList) => {
     if (!files.length || !productName) {
       setMessage('Please enter a product name first');
       return;
@@ -63,7 +63,7 @@ const ProductImageUpload: React.FC<ProductImageUploadProps> = ({ productName, on
       setUploading(false);
       setUploadProgress(0);
     }
-  };
+  }, [productName, onImagesUploaded]);
 
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -71,7 +71,7 @@ const ProductImageUpload: React.FC<ProductImageUploadProps> = ({ productName, on
     if (files.length) {
       uploadImages(files);
     }
-  }, [productName]);
+  }, [uploadImages]);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;

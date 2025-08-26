@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import Gallery from './components/Gallery';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
-
 import CorsonoShop from './components/shop/CorsonoShop';
 import Placeholder from './components/pages/Placeholder';
 import ProductAdmin from './components/admin/ProductAdmin';
+import { AuthProvider } from './components/auth/AdminAuth';
 import './App.css';
 
 const HomePage: React.FC = () => {
@@ -182,40 +182,42 @@ const HomePage: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Navigation />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/corsono" element={<CorsonoShop />} />
-        <Route 
-          path="/corsono-gallery" 
-          element={
-            <Gallery
-              apiEndpoint="/api/corsono/gallery"
-              uploadEndpoint="/api/corsono/gallery/upload"
-              title="Corsono Gallery"
-              aspectRatio="wide"
-            />
-          } 
-        />
-        <Route 
-          path="/art-gallery" 
-          element={
-            <Gallery
-              apiEndpoint="/api/art/gallery"
-              uploadEndpoint="/api/art/gallery/upload"
-              title="Art Gallery"
-              aspectRatio="square"
-            />
-          } 
-        />
-        <Route path="/inner-library" element={<Placeholder title="Inner Library" description="Coming soon" />} />
-        <Route path="/about" element={<Placeholder title="About" description="Coming soon" />} />
-        <Route path="/contact" element={<Placeholder title="Contact" description="Coming soon" />} />
-        <Route path="/admin/products" element={<ProductAdmin />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/corsono" element={<CorsonoShop />} />
+          <Route 
+            path="/corsono-gallery" 
+            element={
+              <Gallery
+                apiEndpoint="/api/corsono/gallery"
+                uploadEndpoint="/api/corsono/gallery/upload"
+                title="Corsono Gallery"
+                aspectRatio="wide"
+              />
+            } 
+          />
+          <Route 
+            path="/art-gallery" 
+            element={
+              <Gallery
+                apiEndpoint="/api/art/gallery"
+                uploadEndpoint="/api/art/gallery/upload"
+                title="Art Gallery"
+                aspectRatio="square"
+              />
+            } 
+          />
+          <Route path="/inner-library" element={<Placeholder title="Inner Library" description="Coming soon" />} />
+          <Route path="/about" element={<Placeholder title="About" description="Coming soon" />} />
+          <Route path="/contact" element={<Placeholder title="Contact" description="Coming soon" />} />
+          <Route path="/admin/products" element={<ProductAdmin />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </AuthProvider>
   );
 };
 

@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { useAuth } from './auth/AdminAuth';
 
 const Navigation: React.FC = () => {
+  const { isAuthenticated, logout } = useAuth();
+  
   const links = [
     { to: '/', label: 'Home' },
     { to: '/corsono', label: 'Corsono' },
@@ -28,6 +31,44 @@ const Navigation: React.FC = () => {
                 {l.label}
               </NavLink>
             ))}
+            
+            {/* Admin links - only visible when authenticated */}
+            {isAuthenticated && (
+              <>
+                <NavLink
+                  to="/admin/products"
+                  className={({ isActive }) => isActive ? 'active' : undefined}
+                  style={{ 
+                    marginRight: 16,
+                    color: 'var(--color-gold)',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  🔧 Admin
+                </NavLink>
+                <button
+                  onClick={logout}
+                  style={{
+                    background: 'rgba(255, 0, 0, 0.1)',
+                    border: '1px solid rgba(255, 0, 0, 0.3)',
+                    color: '#ff6b6b',
+                    padding: '4px 12px',
+                    borderRadius: '6px',
+                    fontSize: '0.8rem',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 0, 0, 0.2)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 0, 0, 0.1)';
+                  }}
+                >
+                  Logout
+                </button>
+              </>
+            )}
           </nav>
         </div>
       </div>
