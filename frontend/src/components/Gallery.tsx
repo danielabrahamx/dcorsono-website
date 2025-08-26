@@ -331,15 +331,6 @@ const Gallery: React.FC<GalleryProps> = ({
             }}>
               Everything created by <strong style={{ color: '#ffd700' }}>Danny</strong>, Founder of Corsono
             </p>
-            <p style={{ 
-              color: '#999', 
-              fontSize: '0.9rem',
-              lineHeight: '1.5',
-              margin: '16px 0 0 0',
-              fontStyle: 'italic'
-            }}>
-              A visual exploration of consciousness, spirituality, and creative expression
-            </p>
           </motion.div>
         )}
       </div>
