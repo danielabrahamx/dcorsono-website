@@ -152,6 +152,35 @@ const CorsonoShop: React.FC = () => {
                 Where consciousness meets craftsmanship. Each piece embodies the alchemy of style, 
                 designed for those who understand that true luxury is an act of awareness.
               </p>
+              <div style={{
+                marginTop: '20px',
+                padding: '16px 24px',
+                background: 'rgba(255, 215, 0, 0.1)',
+                borderRadius: '8px',
+                border: '1px solid rgba(255, 215, 0, 0.3)',
+                textAlign: 'center',
+                maxWidth: '500px',
+                marginLeft: 'auto',
+                marginRight: 'auto'
+              }}>
+                <p style={{
+                  margin: '0',
+                  fontSize: '0.95rem',
+                  color: '#ffd700',
+                  fontFamily: 'var(--font-magical)',
+                  fontWeight: '500'
+                }}>
+                  <strong>Corsono</strong> • "The sound of the heart"
+                </p>
+                <p style={{
+                  margin: '8px 0 0 0',
+                  fontSize: '0.85rem',
+                  color: '#ccc',
+                  fontStyle: 'italic'
+                }}>
+                  Cor (heart) + Sono (sound) in Latin
+                </p>
+              </div>
               <div className="hero-actions">
                 <a href="#collection" className="btn btn-primary">Shop Collection</a>
                 <Link to="/corsono-gallery" className="btn btn-secondary">Photo Gallery</Link>

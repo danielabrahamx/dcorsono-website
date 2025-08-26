@@ -277,6 +277,71 @@ const Gallery: React.FC<GalleryProps> = ({
             <p>Upload your first image to get started</p>
           </motion.div>
         )}
+        
+        {/* Creator Attribution - Only for Art Gallery */}
+        {!apiEndpoint.includes('corsono') && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            style={{
+              marginTop: '48px',
+              textAlign: 'center',
+              padding: '32px',
+              background: 'rgba(255, 215, 0, 0.05)',
+              borderRadius: '12px',
+              border: '1px solid rgba(255, 215, 0, 0.2)',
+              backdropFilter: 'blur(10px)'
+            }}
+          >
+            <div style={{ 
+              display: 'flex', 
+              justifyContent: 'center', 
+              marginBottom: '16px',
+              alignItems: 'center',
+              gap: '12px'
+            }}>
+              <img 
+                src="/images/logo.png" 
+                alt="D'Corsono Logo" 
+                style={{ 
+                  height: '32px', 
+                  width: 'auto',
+                  filter: 'brightness(1.1)',
+                  opacity: 0.8
+                }}
+              />
+              <h3 style={{ 
+                margin: 0, 
+                color: '#ffd700',
+                fontSize: '1.4rem',
+                fontWeight: '600'
+              }}>
+                FALSE!
+              </h3>
+            </div>
+            <p style={{ 
+              color: '#ccc', 
+              fontSize: '1rem',
+              lineHeight: '1.6',
+              margin: '0',
+              maxWidth: '600px',
+              marginLeft: 'auto',
+              marginRight: 'auto'
+            }}>
+              Everything created by <strong style={{ color: '#ffd700' }}>Danny</strong>, Founder of Corsono
+            </p>
+            <p style={{ 
+              color: '#999', 
+              fontSize: '0.9rem',
+              lineHeight: '1.5',
+              margin: '16px 0 0 0',
+              fontStyle: 'italic'
+            }}>
+              A visual exploration of consciousness, spirituality, and creative expression
+            </p>
+          </motion.div>
+        )}
       </div>
 
       {/* Image Modal */}
