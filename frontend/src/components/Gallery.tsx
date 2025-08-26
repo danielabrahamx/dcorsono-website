@@ -55,13 +55,25 @@ const Gallery: React.FC<GalleryProps> = ({
       return [
         { name: 'Golden Dawn Hoodie', url: '/images/products/golden-dawn-hoodie-1.jpg' },
         { name: 'Golden Dawn Bottoms', url: '/images/products/golden-dawn-bottoms-1.jpg' },
-        // Add more Corsono images here when you have them
+        // Corsono Gallery Images
+        { name: 'Corsono Image 1', url: '/images/crsn-1.JPG' },
+        { name: 'Corsono Image 2', url: '/images/crsn-2.jpeg' },
+        { name: 'Corsono Image 3', url: '/images/crsn-3.jpg' },
+        { name: 'Corsono Image 4', url: '/images/crsn-4.jpg' },
+        { name: 'Corsono Image 5', url: '/images/crsn-5.JPG' },
+        { name: 'Corsono Image 6', url: '/images/crsn-6.JPG' },
+        { name: 'Corsono Image 7', url: '/images/crsn-7.jpg' },
       ].filter(item => item.url); // Filter out any undefined images
     } else {
-      // Art gallery static images - add your art pieces here
+      // Art gallery static images
       return [
-        // Add art gallery images here when you have them
-        // { name: 'artwork-1.jpg', url: '/images/products/artwork-1.jpg' },
+        { name: 'Artwork 1', url: '/images/art-1.JPG' },
+        { name: 'Artwork 2', url: '/images/art-2.jpg' },
+        { name: 'Artwork 3', url: '/images/art-3.jpg' },
+        { name: 'Artwork 4', url: '/images/art-4.jpg' },
+        { name: 'Artwork 5', url: '/images/art-5.jpg' },
+        { name: 'Artwork 6', url: '/images/art-6.jpg' },
+        { name: 'Artwork 7', url: '/images/art-7.jpg' },
       ];
     }
   };
