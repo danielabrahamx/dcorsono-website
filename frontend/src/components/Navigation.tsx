@@ -19,7 +19,35 @@ const Navigation: React.FC = () => {
     <header className="header">
       <div className="container">
         <div className="header-content" style={{ gap: 16 }}>
-          <Link to="/" className="brand" style={{ textDecoration: 'none', color: 'gold', fontWeight: 700 }}>D'Corsono</Link>
+          <Link to="/" className="brand" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <img 
+              src="/images/logo.png" 
+              alt="D'Corsono Logo" 
+              style={{ 
+                height: '40px', 
+                width: 'auto',
+                filter: 'brightness(1.1)',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'scale(1.05)';
+                e.currentTarget.style.filter = 'brightness(1.3) drop-shadow(0 0 10px rgba(255, 215, 0, 0.5))';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.filter = 'brightness(1.1)';
+              }}
+            />
+            <span style={{ 
+              color: 'gold', 
+              fontWeight: 700,
+              fontFamily: 'var(--font-magical)',
+              fontSize: '1.2rem',
+              textShadow: '0 0 10px rgba(255, 215, 0, 0.4)'
+            }}>
+              D'Corsono
+            </span>
+          </Link>
           <nav className="nav">
             {links.map((l) => (
               <NavLink

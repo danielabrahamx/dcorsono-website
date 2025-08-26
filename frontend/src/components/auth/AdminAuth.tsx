@@ -108,15 +108,32 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, duration: 0.4 }}
         >
-          <h1 style={{
-            color: 'var(--color-gold)',
-            fontFamily: 'var(--font-magical)',
-            fontSize: '2rem',
-            marginBottom: '8px',
-            textShadow: '0 0 20px rgba(255, 215, 0, 0.4)'
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            gap: '12px',
+            marginBottom: '8px'
           }}>
-            🔐 Admin Access
-          </h1>
+            <img 
+              src="/images/logo.png" 
+              alt="D'Corsono" 
+              style={{ 
+                height: '40px', 
+                width: 'auto',
+                filter: 'brightness(1.2) drop-shadow(0 0 10px rgba(255, 215, 0, 0.4))'
+              }}
+            />
+            <h1 style={{
+              color: 'var(--color-gold)',
+              fontFamily: 'var(--font-magical)',
+              fontSize: '2rem',
+              margin: 0,
+              textShadow: '0 0 20px rgba(255, 215, 0, 0.4)'
+            }}>
+              Admin Access
+            </h1>
+          </div>
           <p style={{ color: '#bbb', marginBottom: '32px' }}>
             Protected area - Enter password to continue
           </p>

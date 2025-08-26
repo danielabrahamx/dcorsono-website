@@ -148,7 +148,18 @@ const Gallery: React.FC<GalleryProps> = ({
             onDrop={handleDrop}
             onDragOver={(e) => e.preventDefault()}
           >
-            <div className="upload-emoji">📸</div>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
+              <img 
+                src="/images/logo.png" 
+                alt="D'Corsono Upload" 
+                style={{ 
+                  height: '48px', 
+                  width: 'auto',
+                  filter: 'brightness(1.1) opacity(0.8)',
+                  transition: 'all 0.3s ease'
+                }}
+              />
+            </div>
             <h3>Upload Images</h3>
             <p style={{ margin: '16px 0', color: '#999' }}>Drag and drop your images here or click to select</p>
             

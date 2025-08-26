@@ -109,7 +109,17 @@ const ProductImageUpload: React.FC<ProductImageUploadProps> = ({ productName, on
         onDragOver={(e) => e.preventDefault()}
         onClick={() => !uploading && productName && document.getElementById('product-image-input')?.click()}
       >
-        <div style={{ fontSize: '2.5rem', marginBottom: 16 }}>📸</div>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
+          <img 
+            src="/images/logo.png" 
+            alt="D'Corsono Upload" 
+            style={{ 
+              height: '48px', 
+              width: 'auto',
+              filter: 'brightness(1.1) opacity(0.8)'
+            }}
+          />
+        </div>
         {!productName ? (
           <p style={{ color: '#999' }}>Enter product name first to enable image upload</p>
         ) : uploading ? (

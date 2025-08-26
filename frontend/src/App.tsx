@@ -62,7 +62,18 @@ const HomePage: React.FC = () => {
               position: 'relative',
               overflow: 'hidden'
             }}>
-              <div style={{ fontSize: '4rem', marginBottom: '16px' }}>👑</div>
+              <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'center' }}>
+                <img 
+                  src="/images/logo.png" 
+                  alt="D'Corsono Logo" 
+                  style={{ 
+                    height: '60px', 
+                    width: 'auto',
+                    filter: 'brightness(1.2) drop-shadow(0 0 15px rgba(255, 215, 0, 0.4))',
+                    transition: 'all 0.3s ease'
+                  }}
+                />
+              </div>
               <h2 style={{ fontSize: '2rem', color: 'var(--color-gold)', marginBottom: '16px' }}>
                 Golden Dawn Collection
               </h2>
@@ -123,7 +134,18 @@ const HomePage: React.FC = () => {
           >
             <Link to="/corsono-gallery" style={{ textDecoration: 'none' }}>
               <div className="home-card">
-                <div style={{ fontSize: '3rem', marginBottom: '16px' }}>📸</div>
+                <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'center' }}>
+                  <img 
+                    src="/images/logo.png" 
+                    alt="D'Corsono" 
+                    style={{ 
+                      height: '48px', 
+                      width: 'auto',
+                      filter: 'brightness(1.1) opacity(0.9)',
+                      transition: 'all 0.3s ease'
+                    }}
+                  />
+                </div>
                 <h2>Corsono Gallery</h2>
                 <p style={{ color: '#ccc' }}>
                   Behind-the-scenes moments and fashion photography showcasing the Corsono aesthetic
