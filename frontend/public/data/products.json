@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1,
+    "name": "Golden Dawn Hoodie",
+    "price": 90,
+    "category": "hoodies",
+    "collection": "Golden Dawn",
+    "description": "Premium hoodie from the Golden Dawn collection, embodying conscious luxury and spiritual elegance. Crafted with intention for those who wear their awareness.",
+    "material": "Premium Cotton Blend",
+    "care": "Machine wash cold, tumble dry low",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Black", "Gold"],
+    "images": [
+      "/images/products/golden-dawn-hoodie-1.jpg"
+    ],
+    "featured": true,
+    "inStock": true,
+    "stripeUrl": "https://buy.stripe.com/6oU28seVi5PLbrBaom7wA03"
+  },
+  {
+    "id": 2,
+    "name": "Golden Dawn Tracksuit Bottoms",
+    "price": 85,
+    "category": "tracksuits",
+    "collection": "Golden Dawn",
+    "description": "Luxurious tracksuit bottoms from the Golden Dawn collection, perfect for conscious comfort and style. Every detail considered with intention.",
+    "material": "Premium Cotton Blend",
+    "care": "Machine wash cold, tumble dry low",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Black", "Gold"],
+    "images": [
+      "/images/products/golden-dawn-bottoms-1.jpg"
+    ],
+    "featured": true,
+    "inStock": true,
+    "stripeUrl": "https://buy.stripe.com/cNi6oI00o3HD1R16867wA04"
+  },
+  {
+    "id": 3,
+    "name": "Golden Dawn Full Set",
+    "price": 155,
+    "category": "sets",
+    "collection": "Golden Dawn",
+    "description": "Complete Golden Dawn set including hoodie and tracksuit bottoms. The ultimate expression of conscious luxury with a special bundle price.",
+    "material": "Premium Cotton Blend",
+    "care": "Machine wash cold, tumble dry low",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Black", "Gold"],
+    "images": [
+      "/images/products/golden-dawn-hoodie-1.jpg",
+      "/images/products/golden-dawn-bottoms-1.jpg"
+    ],
+    "featured": true,
+    "inStock": true,
+    "originalPrice": 175,
+    "savings": 20,
+    "stripeUrl": "https://buy.stripe.com/bJe00k14s7XTdzJ1RQ7wA05"
+  }
+]

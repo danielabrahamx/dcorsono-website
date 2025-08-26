@@ -2,6 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Gallery from './components/Gallery';
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
+import CorsonoPage from './components/pages/CorsonoPage';
+import CorsonoShop from './components/shop/CorsonoShop';
+import Placeholder from './components/pages/Placeholder';
+import ProductAdmin from './components/admin/ProductAdmin';
 import './App.css';
 
 const HomePage: React.FC = () => {
@@ -84,8 +90,10 @@ const HomePage: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Router>
+      <Navigation />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/corsono" element={<CorsonoShop />} />
         <Route 
           path="/corsono-gallery" 
           element={
@@ -108,7 +116,12 @@ const App: React.FC = () => {
             />
           } 
         />
+        <Route path="/inner-library" element={<Placeholder title="Inner Library" description="Coming soon" />} />
+        <Route path="/about" element={<Placeholder title="About" description="Coming soon" />} />
+        <Route path="/contact" element={<Placeholder title="Contact" description="Coming soon" />} />
+        <Route path="/admin/products" element={<ProductAdmin />} />
       </Routes>
+      <Footer />
     </Router>
   );
 };
