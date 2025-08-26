@@ -10,6 +10,7 @@ interface ProductForm {
   material: string;
   care: string;
   sizes: string[];
+  availableSizes: string[];
   colors: string[];
   collection: string;
   images: string[];
@@ -24,6 +25,7 @@ const ProductAdminContent: React.FC = () => {
     material: '',
     care: '',
     sizes: [],
+    availableSizes: [],
     colors: [],
     collection: 'Golden Dawn',
     images: []
@@ -39,6 +41,7 @@ const ProductAdminContent: React.FC = () => {
       material: 'Premium Cotton Blend',
       care: 'Machine wash cold, tumble dry low',
       sizes: ['S', 'M', 'L', 'XL'],
+      availableSizes: ['M'],
       colors: ['Black', 'Gold'],
       images: []
     },
@@ -49,6 +52,7 @@ const ProductAdminContent: React.FC = () => {
       material: 'Premium Cotton Blend',
       care: 'Machine wash cold, tumble dry low',
       sizes: ['S', 'M', 'L', 'XL'],
+      availableSizes: ['M'],
       colors: ['Black', 'Gold'],
       images: []
     },
@@ -59,6 +63,7 @@ const ProductAdminContent: React.FC = () => {
       material: 'Premium Cotton Blend',
       care: 'Machine wash cold, tumble dry low',
       sizes: ['S', 'M', 'L', 'XL'],
+      availableSizes: ['M'],
       colors: ['Black', 'Gold'],
       images: []
     }
@@ -86,9 +91,9 @@ const ProductAdminContent: React.FC = () => {
   const handleSizeToggle = (size: string) => {
     setProduct(prev => ({
       ...prev,
-      sizes: prev.sizes.includes(size) 
-        ? prev.sizes.filter(s => s !== size)
-        : [...prev.sizes, size]
+      availableSizes: prev.availableSizes.includes(size) 
+        ? prev.availableSizes.filter(s => s !== size)
+        : [...prev.availableSizes, size]
     }));
   };
 
@@ -111,6 +116,7 @@ const ProductAdminContent: React.FC = () => {
       material: product.material,
       care: product.care,
       sizes: product.sizes,
+      availableSizes: product.availableSizes,
       colors: product.colors,
       collection: product.collection,
       images: product.images.length > 0 ? product.images : [`/images/corsono/${product.name.toLowerCase().replace(/\s+/g, '-')}-1.jpg`]
@@ -335,8 +341,8 @@ ${JSON.stringify(productObject, null, 2)}`;
                 onClick={() => handleSizeToggle(size)}
                 style={{
                   padding: '8px 16px',
-                  background: product.sizes.includes(size) ? 'var(--color-gold)' : 'transparent',
-                  color: product.sizes.includes(size) ? '#000' : 'var(--color-gold)',
+                  background: product.availableSizes.includes(size) ? 'var(--color-gold)' : 'transparent',
+                  color: product.availableSizes.includes(size) ? '#000' : 'var(--color-gold)',
                   border: '2px solid var(--color-gold)',
                   borderRadius: 6,
                   cursor: 'pointer'
@@ -346,6 +352,42 @@ ${JSON.stringify(productObject, null, 2)}`;
               </button>
             ))}
           </div>
+        </div>
+        
+        {/* All Sizes (for reference) */}
+        <div style={{ marginBottom: 24 }}>
+          <label style={{ display: 'block', marginBottom: 12, color: 'var(--color-gold)' }}>
+            All Sizes (Product Range)
+          </label>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            {availableSizes.map(size => (
+              <button
+                key={size}
+                onClick={() => {
+                  if (!product.sizes.includes(size)) {
+                    setProduct(prev => ({
+                      ...prev,
+                      sizes: [...prev.sizes, size]
+                    }));
+                  }
+                }}
+                style={{
+                  padding: '8px 16px',
+                  background: product.sizes.includes(size) ? 'rgba(255,215,0,0.3)' : 'transparent',
+                  color: product.sizes.includes(size) ? '#000' : '#666',
+                  border: '2px solid rgba(255,215,0,0.3)',
+                  borderRadius: 6,
+                  cursor: product.sizes.includes(size) ? 'default' : 'pointer',
+                  opacity: product.sizes.includes(size) ? 1 : 0.5
+                }}
+              >
+                {size}
+              </button>
+            ))}
+          </div>
+          <p style={{ color: '#ccc', fontSize: '0.9rem', marginTop: 8 }}>
+            Add sizes to show in product range (all sizes will be displayed but only available ones can be selected)
+          </p>
         </div>
 
         {/* Colors */}

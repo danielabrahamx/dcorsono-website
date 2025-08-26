@@ -8,8 +8,8 @@ const Navigation: React.FC = () => {
   const links = [
     { to: '/', label: 'Home' },
     { to: '/corsono', label: 'Corsono' },
-    { to: '/corsono-gallery', label: 'Photo Gallery' },
-    { to: '/art-gallery', label: 'Art Gallery' },
+    { to: '/corsono-gallery', label: 'Gallery' },
+    { to: '/art-gallery', label: 'Art' },
     { to: '/inner-library', label: 'Inner Library' },
     { to: '/about', label: 'About' },
     { to: '/contact', label: 'Contact' }
@@ -52,15 +52,7 @@ const Navigation: React.FC = () => {
                 console.log('Logo loaded successfully:', e.currentTarget.src);
               }}
             />
-            <span style={{ 
-              color: 'gold', 
-              fontWeight: 700,
-              fontFamily: 'var(--font-magical)',
-              fontSize: '1.2rem',
-              textShadow: '0 0 10px rgba(255, 215, 0, 0.4)'
-            }}>
-              D'Corsono
-            </span>
+            
           </Link>
           <nav className="nav">
             {links.map((l) => (

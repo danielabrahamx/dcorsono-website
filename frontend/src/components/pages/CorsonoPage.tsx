@@ -13,7 +13,7 @@ const CorsonoPage: React.FC = () => {
                 <span className="brand-name">Corsono</span>
                 <span className="hero-subtitle">Quiet Luxury, Conscious Style</span>
               </h1>
-              <p className="hero-description">Where consciousness meets craftsmanship. Each piece embodies the alchemy of style, designed for those who understand that true luxury is an act of awareness.</p>
+              <p className="hero-description">Where creativity meets craftsmanship. Each piece embodies the alchemy of style, designed for those who understand that true luxury is an act of intention.</p>
               <div className="hero-actions">
                 <a href="#collection" className="btn btn-primary">Explore Collection</a>
                 <Link to="/corsono-gallery" className="btn btn-secondary">Photo Gallery</Link>
@@ -28,7 +28,7 @@ const CorsonoPage: React.FC = () => {
         <div className="container">
           <div className="section-header">
             <h2 className="section-title">The Collection</h2>
-            <p className="section-subtitle">Each piece is a statement of consciousness.</p>
+            <p className="section-subtitle">Each piece is a statement of style.</p>
           </div>
           <div className="gallery-link-container" style={{ textAlign: 'center', marginTop: 40, padding: '40px 0', borderTop: '1px solid rgba(255,215,0,0.2)' }}>
             <h3 style={{ color: '#FFD700', marginBottom: 16 }}>Behind the Scenes</h3>

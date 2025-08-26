@@ -5,10 +5,11 @@
     "price": 90,
     "category": "hoodies",
     "collection": "Golden Dawn",
-    "description": "Premium hoodie from the Golden Dawn collection, embodying conscious luxury and spiritual elegance. Crafted with intention for those who wear their awareness.",
+
     "material": "Premium Cotton Blend",
     "care": "Machine wash cold, tumble dry low",
     "sizes": ["S", "M", "L", "XL"],
+    "availableSizes": ["M"],
     "colors": ["Black", "Gold"],
     "images": [
       "/images/products/golden-dawn-hoodie-1.jpg"
@@ -23,10 +24,11 @@
     "price": 85,
     "category": "tracksuits",
     "collection": "Golden Dawn",
-    "description": "Luxurious tracksuit bottoms from the Golden Dawn collection, perfect for conscious comfort and style. Every detail considered with intention.",
+
     "material": "Premium Cotton Blend",
     "care": "Machine wash cold, tumble dry low",
     "sizes": ["S", "M", "L", "XL"],
+    "availableSizes": ["M"],
     "colors": ["Black", "Gold"],
     "images": [
       "/images/products/golden-dawn-bottoms-1.jpg"
@@ -41,10 +43,11 @@
     "price": 155,
     "category": "sets",
     "collection": "Golden Dawn",
-    "description": "Complete Golden Dawn set including hoodie and tracksuit bottoms. The ultimate expression of conscious luxury with a special bundle price.",
+
     "material": "Premium Cotton Blend",
     "care": "Machine wash cold, tumble dry low",
     "sizes": ["S", "M", "L", "XL"],
+    "availableSizes": ["M"],
     "colors": ["Black", "Gold"],
     "images": [
       "/images/products/golden-dawn-hoodie-1.jpg",
@@ -55,5 +58,39 @@
     "originalPrice": 175,
     "savings": 20,
     "stripeUrl": "https://buy.stripe.com/bJe00k14s7XTdzJ1RQ7wA05"
+  },
+  {
+    "id": 4,
+    "name": "Flyheart Denim Jacket",
+    "price": 150,
+    "category": "jackets",
+    "collection": "Golden Dawn",
+    "material": "Waxed/Coated Premium Denim",
+    "care": "Machine wash cold, tumble dry low",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Blue", "Black"],
+    "images": [
+      "/images/crsn-8.jpg"
+    ],
+    "featured": false,
+    "inStock": false,
+    "stripeUrl": ""
+  },
+  {
+    "id": 5,
+    "name": "Flyheart Denim Jeans",
+    "price": 120,
+    "category": "jeans",
+    "collection": "Golden Dawn",
+    "material": "Waxed/Coated Premium Denim",
+    "care": "Machine wash cold, tumble dry low",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Blue", "Black"],
+    "images": [
+      "/images/crsn-9.jpg"
+    ],
+    "featured": false,
+    "inStock": false,
+    "stripeUrl": ""
   }
 ]

@@ -8,13 +8,13 @@ const Footer: React.FC = () => {
         <div className="footer-grid">
           <div>
             <h3>D'Corsono</h3>
-            <p style={{ color: '#999' }}>Where consciousness meets creativity.</p>
+
           </div>
           <div>
             <h4>Explore</h4>
             <ul className="footer-links">
               <li><Link to="/corsono">Corsono</Link></li>
-              <li><Link to="/corsono-gallery">Photo Gallery</Link></li>
+              <li><Link to="/corsono-gallery">Gallery</Link></li>
               <li><Link to="/art-gallery">Art Gallery</Link></li>
               <li><Link to="/inner-library">Inner Library</Link></li>
             </ul>

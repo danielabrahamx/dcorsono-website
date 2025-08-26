@@ -167,11 +167,6 @@ const Gallery: React.FC<GalleryProps> = ({
         <div className="container">
           <div className="header-content">
             <h1>{title}</h1>
-            <nav className="nav">
-              <Link to="/">Home</Link>
-              <Link to="/corsono-gallery">Photo Gallery</Link>
-              <Link to="/art-gallery">Art Gallery</Link>
-            </nav>
           </div>
         </div>
       </motion.header>
@@ -317,7 +312,7 @@ const Gallery: React.FC<GalleryProps> = ({
                 fontSize: '1.4rem',
                 fontWeight: '600'
               }}>
-                FALSE!
+                The Sound of the Heart
               </h3>
             </div>
             <p style={{ 

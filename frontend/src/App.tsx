@@ -28,22 +28,8 @@ const HomePage: React.FC = () => {
           >
             D'Corsono
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            style={{ fontSize: '1.25rem', color: '#ccc', marginBottom: '32px' }}
-          >
-            Where Consciousness Meets Creativity
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            style={{ fontSize: '1rem', color: '#999', maxWidth: '600px', margin: '0 auto 40px' }}
-          >
-            Discover the Golden Dawn collection - luxury streetwear that embodies conscious intention and spiritual elegance
-          </motion.p>
+
+          
         </motion.div>
 
         {/* Primary CTA - Corsono Shop */}
@@ -77,20 +63,10 @@ const HomePage: React.FC = () => {
               <h2 style={{ fontSize: '2rem', color: 'var(--color-gold)', marginBottom: '16px' }}>
                 Golden Dawn Collection
               </h2>
-              <p style={{ color: '#ccc', fontSize: '1.1rem', marginBottom: '24px' }}>
-                Premium hoodies, tracksuit bottoms, and exclusive bundle sets. Conscious luxury for the awakened soul.
-              </p>
-              <div style={{
-                background: 'linear-gradient(90deg, var(--color-gold), #fff)',
-                color: '#000',
-                padding: '12px 32px',
-                borderRadius: '25px',
-                display: 'inline-block',
-                fontWeight: 'bold',
-                fontSize: '1.1rem'
-              }}>
-                Shop Collection →
-              </div>
+              
+                             <div className="liquid-glass-button">
+                 Shop Collection →
+               </div>
               <div style={{
                 position: 'absolute',
                 top: '16px',
@@ -115,14 +91,7 @@ const HomePage: React.FC = () => {
           transition={{ delay: 1.0 }}
           style={{ marginBottom: '32px' }}
         >
-          <h3 style={{ 
-            textAlign: 'center', 
-            color: 'var(--color-gold)', 
-            marginBottom: '32px',
-            fontSize: '1.5rem'
-          }}>
-            Explore Our Creative Universe
-          </h3>
+          
         </motion.div>
 
         <div className="home-grid">
@@ -133,23 +102,8 @@ const HomePage: React.FC = () => {
             whileHover={{ scale: 1.05 }}
           >
             <Link to="/corsono-gallery" style={{ textDecoration: 'none' }}>
-              <div className="home-card">
-                <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'center' }}>
-                  <img 
-                    src="/images/logo.png" 
-                    alt="D'Corsono" 
-                    style={{ 
-                      height: '48px', 
-                      width: 'auto',
-                      filter: 'brightness(1.1) opacity(0.9)',
-                      transition: 'all 0.3s ease'
-                    }}
-                  />
-                </div>
-                <h2>Corsono Gallery</h2>
-                <p style={{ color: '#ccc' }}>
-                  Behind-the-scenes moments and fashion photography showcasing the Corsono aesthetic
-                </p>
+              <div className="home-card liquid-glass">
+                <h2>Gallery</h2>
               </div>
             </Link>
           </motion.div>
@@ -161,42 +115,14 @@ const HomePage: React.FC = () => {
             whileHover={{ scale: 1.05 }}
           >
             <Link to="/art-gallery" style={{ textDecoration: 'none' }}>
-              <div className="home-card">
-                <div style={{ fontSize: '3rem', marginBottom: '16px' }}>🎨</div>
-                <h2>Art Gallery</h2>
-                <p style={{ color: '#ccc' }}>
-                  Original visual art exploring consciousness, spirituality, and creative expression
-                </p>
+              <div className="home-card liquid-glass">
+                <h2>Art</h2>
               </div>
             </Link>
           </motion.div>
         </div>
 
-        {/* Brand Philosophy */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.6 }}
-          style={{ 
-            marginTop: '64px', 
-            textAlign: 'center',
-            padding: '32px',
-            background: 'rgba(255,255,255,0.03)',
-            borderRadius: '12px',
-            border: '1px solid rgba(255,255,255,0.1)'
-          }}
-        >
-          <p style={{ 
-            color: '#bbb', 
-            fontSize: '1rem',
-            lineHeight: '1.6',
-            maxWidth: '700px',
-            margin: '0 auto'
-          }}>
-            Every piece in our collection is crafted with intention. From the Golden Dawn luxury streetwear to our artistic expressions, 
-            we believe in creating with consciousness and wearing with purpose.
-          </p>
-        </motion.div>
+        
       </div>
     </div>
   );
@@ -216,7 +142,7 @@ const App: React.FC = () => {
               <Gallery
                 apiEndpoint="/api/corsono/gallery"
                 uploadEndpoint="/api/corsono/gallery/upload"
-                title="Corsono Gallery"
+                title="Gallery"
                 aspectRatio="wide"
               />
             } 
@@ -227,7 +153,7 @@ const App: React.FC = () => {
               <Gallery
                 apiEndpoint="/api/art/gallery"
                 uploadEndpoint="/api/art/gallery/upload"
-                title="Art Gallery"
+                title="Art"
                 aspectRatio="square"
               />
             } 
