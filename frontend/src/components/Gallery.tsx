@@ -53,9 +53,7 @@ const Gallery: React.FC<GalleryProps> = ({
     // For Netlify deployment, use pre-defined static images
     if (endpoint.includes('corsono')) {
       return [
-        { name: 'Golden Dawn Hoodie', url: '/images/products/golden-dawn-hoodie-1.jpg' },
-        { name: 'Golden Dawn Bottoms', url: '/images/products/golden-dawn-bottoms-1.jpg' },
-        // Corsono Gallery Images
+        // Corsono Gallery Images ONLY - no product images
         { name: 'Corsono Image 1', url: '/images/crsn-1.JPG' },
         { name: 'Corsono Image 2', url: '/images/crsn-2.jpeg' },
         { name: 'Corsono Image 3', url: '/images/crsn-3.jpg' },
@@ -63,6 +61,8 @@ const Gallery: React.FC<GalleryProps> = ({
         { name: 'Corsono Image 5', url: '/images/crsn-5.JPG' },
         { name: 'Corsono Image 6', url: '/images/crsn-6.JPG' },
         { name: 'Corsono Image 7', url: '/images/crsn-7.jpg' },
+        { name: 'Corsono Image 8', url: '/images/crsn-8.jpg' },
+        { name: 'Corsono Image 9', url: '/images/crsn-9.jpg' },
       ].filter(item => item.url); // Filter out any undefined images
     } else {
       // Art gallery static images
@@ -150,24 +150,40 @@ const Gallery: React.FC<GalleryProps> = ({
 
   if (loading) {
     return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div className="spinner" />
+      <div className="gallery-loading">
+        <div className="loading-spinner">
+          <div className="spinner-ring"></div>
+          <div className="spinner-text">Loading Gallery...</div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div style={{ minHeight: '100vh' }}>
-      {/* Header */}
+    <div className="gallery-page">
+      {/* Hero Header */}
       <motion.header 
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className="header"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="gallery-hero"
       >
         <div className="container">
-          <div className="header-content">
-            <h1>{title}</h1>
-          </div>
+          <motion.h1
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="gallery-title"
+          >
+            {title}
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="gallery-subtitle"
+          >
+            Curated collection of artistic expression
+          </motion.p>
         </div>
       </motion.header>
 
@@ -177,52 +193,39 @@ const Gallery: React.FC<GalleryProps> = ({
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            className="upload-area"
+            transition={{ delay: 0.6 }}
+            className="upload-area luxury-upload"
             onDrop={handleDrop}
             onDragOver={(e) => e.preventDefault()}
           >
-            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
+            <div className="upload-header">
               <img 
                 src="/images/logo.png" 
                 alt="D'Corsono Upload" 
-                style={{ 
-                  height: '48px', 
-                  width: 'auto',
-                  filter: 'brightness(1.1) opacity(0.8)',
-                  transition: 'all 0.3s ease'
-                }}
+                className="upload-logo"
               />
+              <h3>Upload New Images</h3>
+              <p>Drag and drop your images here or click to select</p>
             </div>
-            <h3>Upload Images</h3>
-            <p style={{ margin: '16px 0', color: '#999' }}>Drag and drop your images here or click to select</p>
-            <p style={{ 
-              fontSize: '0.8rem', 
-              color: '#666', 
-              marginTop: '8px',
-              padding: '8px',
-              background: 'rgba(255, 215, 0, 0.1)',
-              borderRadius: '4px',
-              border: '1px solid rgba(255, 215, 0, 0.2)'
-            }}>
-              💡 <strong>Note:</strong> Image uploads work locally. On Netlify, images are pre-loaded for display.
-            </p>
             
-            <input
-              type="file"
-              multiple
-              accept="image/*,video/*"
-              onChange={handleFileSelect}
-              id="file-upload"
-            />
-            <label htmlFor="file-upload" className="btn">
-              Select Files
-            </label>
+            <div className="upload-actions">
+              <input
+                type="file"
+                multiple
+                accept="image/*,video/*"
+                onChange={handleFileSelect}
+                id="file-upload"
+              />
+              <label htmlFor="file-upload" className="btn btn-primary">
+                Select Files
+              </label>
+            </div>
 
             {uploading && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                style={{ marginTop: '16px' }}
+                className="upload-progress"
               >
                 <div className="progress">
                   <motion.div
@@ -231,7 +234,7 @@ const Gallery: React.FC<GalleryProps> = ({
                     animate={{ width: `${uploadProgress}%` }}
                   />
                 </div>
-                <p style={{ fontSize: '14px', color: '#999' }}>Uploading... {uploadProgress}%</p>
+                <p>Uploading... {uploadProgress}%</p>
               </motion.div>
             )}
           </motion.div>
@@ -242,34 +245,60 @@ const Gallery: React.FC<GalleryProps> = ({
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="gallery-grid"
+            transition={{ delay: 0.8 }}
+            className="gallery-container"
           >
-            {items.map((item, index) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className={`gallery-card ${aspectRatio}`}
-                onClick={() => setSelectedImage(item.url)}
-              >
-                <img
-                  src={item.url}
-                  alt="Gallery item"
-                />
-              </motion.div>
-            ))}
+            <div className="gallery-grid">
+              {items.map((item, index) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, scale: 0.8, y: 50 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ 
+                    delay: 0.8 + (index * 0.1),
+                    duration: 0.6,
+                    ease: "easeOut"
+                  }}
+                  whileHover={{ 
+                    scale: 1.05,
+                    y: -10,
+                    transition: { duration: 0.3 }
+                  }}
+                  className={`gallery-item ${aspectRatio}`}
+                  onClick={() => setSelectedImage(item.url)}
+                >
+                  <div className="gallery-item-inner">
+                    <div className="image-container">
+                      <img
+                        src={item.url}
+                        alt={item.name}
+                        loading="lazy"
+                      />
+                      <div className="image-overlay">
+                        <div className="overlay-content">
+                          <span className="view-icon">👁️</span>
+                          <span className="view-text">View</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="item-info">
+                      <h4>{item.name}</h4>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         ) : (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="empty"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.0 }}
+            className="gallery-empty"
           >
-            <div className="empty-emoji">🎨</div>
-            <h3>No images yet</h3>
-            <p>Upload your first image to get started</p>
+            <div className="empty-icon">🎨</div>
+            <h3>Gallery Empty</h3>
+            <p>No images available yet. Upload your first masterpiece to begin.</p>
           </motion.div>
         )}
         
@@ -278,54 +307,20 @@ const Gallery: React.FC<GalleryProps> = ({
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            style={{
-              marginTop: '48px',
-              textAlign: 'center',
-              padding: '32px',
-              background: 'rgba(255, 215, 0, 0.05)',
-              borderRadius: '12px',
-              border: '1px solid rgba(255, 215, 0, 0.2)',
-              backdropFilter: 'blur(10px)'
-            }}
+            transition={{ delay: 1.2 }}
+            className="creator-attribution"
           >
-            <div style={{ 
-              display: 'flex', 
-              justifyContent: 'center', 
-              marginBottom: '16px',
-              alignItems: 'center',
-              gap: '12px'
-            }}>
+            <div className="attribution-content">
               <img 
                 src="/images/logo.png" 
                 alt="D'Corsono Logo" 
-                style={{ 
-                  height: '32px', 
-                  width: 'auto',
-                  filter: 'brightness(1.1)',
-                  opacity: 0.8
-                }}
+                className="attribution-logo"
               />
-              <h3 style={{ 
-                margin: 0, 
-                color: '#ffd700',
-                fontSize: '1.4rem',
-                fontWeight: '600'
-              }}>
-                The Sound of the Heart
-              </h3>
+              <div className="attribution-text">
+                <h3>The Sound of the Heart</h3>
+                <p>Everything created by <strong>Danny</strong>, Founder of Corsono</p>
+              </div>
             </div>
-            <p style={{ 
-              color: '#ccc', 
-              fontSize: '1rem',
-              lineHeight: '1.6',
-              margin: '0',
-              maxWidth: '600px',
-              marginLeft: 'auto',
-              marginRight: 'auto'
-            }}>
-              Everything created by <strong style={{ color: '#ffd700' }}>Danny</strong>, Founder of Corsono
-            </p>
           </motion.div>
         )}
       </div>
@@ -337,7 +332,7 @@ const Gallery: React.FC<GalleryProps> = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="modal"
+            className="image-modal"
             onClick={() => setSelectedImage(null)}
           >
             <motion.button
@@ -346,17 +341,23 @@ const Gallery: React.FC<GalleryProps> = ({
               exit={{ opacity: 0, scale: 0.8 }}
               className="modal-close"
               onClick={() => setSelectedImage(null)}
+              aria-label="Close modal"
             >
               ×
             </motion.button>
-            <motion.img
+            <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              src={selectedImage}
-              alt="Enlarged view"
+              className="modal-content"
               onClick={(e) => e.stopPropagation()}
-            />
+            >
+              <img
+                src={selectedImage}
+                alt="Enlarged view"
+                className="modal-image"
+              />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

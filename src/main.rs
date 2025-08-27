@@ -1,5 +1,5 @@
 use axum::{
-    extract::{Multipart, Request},
+    extract::Multipart,
     http::{StatusCode, HeaderMap},
     response::Html,
     routing::{get, post},
@@ -51,8 +51,9 @@ async fn main() {
         .route("/api/art/gallery", get(api_list_art_gallery))
         .route("/api/art/gallery/upload", post(api_upload_art_gallery))
         // Static assets
-        .nest_service("/static", ServeDir::new("static"))
-        .nest_service("/images", ServeDir::new("images"))
+        .nest_service("/static", ServeDir::new("frontend/build/static"))
+        .nest_service("/images", ServeDir::new("frontend/build/images"))
+        .nest_service("/data", ServeDir::new("frontend/build/data"))
         .layer(CorsLayer::permissive());
 
     // Bind to address
@@ -68,7 +69,7 @@ async fn main() {
 }
 
 async fn serve_home() -> Html<&'static str> {
-    Html(include_str!("../index.html"))
+    Html(include_str!("../frontend/build/index.html"))
 }
 
 async fn serve_corsono_gallery() -> Html<&'static str> {
@@ -80,23 +81,26 @@ async fn serve_art_gallery() -> Html<&'static str> {
 }
 
 async fn api_list_gallery() -> Json<Vec<GalleryItem>> {
-    let dir = Path::new("images/corsono");
+    let dir = Path::new("frontend/build/images");
     let mut items: Vec<GalleryItem> = Vec::new();
     if let Ok(entries) = fs::read_dir(dir) {
         for entry in entries.flatten() {
             if let Ok(meta) = entry.metadata() {
                 if meta.is_file() {
                     if let Some(name) = entry.file_name().to_str() {
-                        let ext_ok = Path::new(name)
-                            .extension()
-                            .and_then(|e| e.to_str())
-                            .map(|e| matches!(e.to_lowercase().as_str(), "jpg" | "jpeg" | "png" | "webp"))
-                            .unwrap_or(false);
-                        if ext_ok {
-                            items.push(GalleryItem {
-                                name: name.to_string(),
-                                url: format!("/images/corsono/{}", name),
-                            });
+                        // Only include curated corsono images (crsn-*), exclude uploads
+                        if name.starts_with("crsn-") && !name.starts_with("upload-") {
+                            let ext_ok = Path::new(name)
+                                .extension()
+                                .and_then(|e| e.to_str())
+                                .map(|e| matches!(e.to_lowercase().as_str(), "jpg" | "jpeg" | "png" | "webp"))
+                                .unwrap_or(false);
+                            if ext_ok {
+                                items.push(GalleryItem {
+                                    name: name.to_string(),
+                                    url: format!("/images/{}", name),
+                                });
+                            }
                         }
                     }
                 }
@@ -125,7 +129,7 @@ async fn api_upload_gallery(headers: HeaderMap, mut multipart: Multipart) -> Res
         return Err((StatusCode::UNAUTHORIZED, "Unauthorized: Admin access required".to_string()));
     }
     // Ensure gallery directory exists
-    if let Err(e) = tokio_fs::create_dir_all("images/corsono").await {
+    if let Err(e) = tokio_fs::create_dir_all("frontend/build/images").await {
         return Err((StatusCode::INTERNAL_SERVER_ERROR, format!("Failed to ensure directory: {}", e)));
     }
 
@@ -144,9 +148,9 @@ async fn api_upload_gallery(headers: HeaderMap, mut multipart: Multipart) -> Res
                 continue;
             }
 
-            let new_name = format!("{}.{}", Uuid::new_v4(), ext);
+            let new_name = format!("upload-{}.{}", Uuid::new_v4(), ext);
             let data = field.bytes().await.map_err(|e| (StatusCode::BAD_REQUEST, e.to_string()))?;
-            let path = format!("images/corsono/{}", new_name);
+            let path = format!("frontend/build/images/{}", new_name);
 
             tokio_fs::write(&path, &data).await.map_err(|e| (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()))?;
 
@@ -163,23 +167,26 @@ async fn api_upload_gallery(headers: HeaderMap, mut multipart: Multipart) -> Res
 }
 
 async fn api_list_art_gallery() -> Json<Vec<GalleryItem>> {
-    let dir = Path::new("images/art");
+    let dir = Path::new("frontend/build/images");
     let mut items: Vec<GalleryItem> = Vec::new();
     if let Ok(entries) = fs::read_dir(dir) {
         for entry in entries.flatten() {
-            if let Ok(meta) = entry.metadata() {
+                            if let Ok(meta) = entry.metadata() {
                 if meta.is_file() {
                     if let Some(name) = entry.file_name().to_str() {
-                        let ext_ok = Path::new(name)
-                            .extension()
-                            .and_then(|e| e.to_str())
-                            .map(|e| matches!(e.to_lowercase().as_str(), "jpg" | "jpeg" | "png" | "webp" | "gif" | "mp4" | "mov"))
-                            .unwrap_or(false);
-                        if ext_ok {
-                            items.push(GalleryItem {
-                                name: name.to_string(),
-                                url: format!("/images/art/{}", name),
-                            });
+                        // Only include curated art images (art-*), exclude uploads
+                        if name.starts_with("art-") && !name.starts_with("upload-") {
+                            let ext_ok = Path::new(name)
+                                .extension()
+                                .and_then(|e| e.to_str())
+                                .map(|e| matches!(e.to_lowercase().as_str(), "jpg" | "jpeg" | "png" | "webp" | "gif" | "mp4" | "mov"))
+                                .unwrap_or(false);
+                            if ext_ok {
+                                items.push(GalleryItem {
+                                    name: name.to_string(),
+                                    url: format!("/images/{}", name),
+                                });
+                            }
                         }
                     }
                 }
@@ -197,7 +204,7 @@ async fn api_upload_art_gallery(headers: HeaderMap, mut multipart: Multipart) ->
         return Err((StatusCode::UNAUTHORIZED, "Unauthorized: Admin access required".to_string()));
     }
     // Ensure gallery directory exists
-    if let Err(e) = tokio_fs::create_dir_all("images/art").await {
+    if let Err(e) = tokio_fs::create_dir_all("frontend/build/images").await {
         return Err((StatusCode::INTERNAL_SERVER_ERROR, format!("Failed to ensure directory: {}", e)));
     }
 
@@ -216,9 +223,9 @@ async fn api_upload_art_gallery(headers: HeaderMap, mut multipart: Multipart) ->
                 continue;
             }
 
-            let new_name = format!("{}.{}", Uuid::new_v4(), ext);
+            let new_name = format!("upload-{}.{}", Uuid::new_v4(), ext);
             let data = field.bytes().await.map_err(|e| (StatusCode::BAD_REQUEST, e.to_string()))?;
-            let path = format!("images/art/{}", new_name);
+            let path = format!("frontend/build/images/{}", new_name);
 
             tokio_fs::write(&path, &data).await.map_err(|e| (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()))?;
 

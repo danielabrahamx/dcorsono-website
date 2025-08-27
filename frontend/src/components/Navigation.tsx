@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from './auth/AdminAuth';
 
 const Navigation: React.FC = () => {
   const { isAuthenticated, logout } = useAuth();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const links = [
     { to: '/', label: 'Home' },
@@ -14,6 +15,14 @@ const Navigation: React.FC = () => {
     { to: '/about', label: 'About' },
     { to: '/contact', label: 'Contact' }
   ];
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <header className="header">
@@ -33,7 +42,7 @@ const Navigation: React.FC = () => {
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'scale(1.05)';
-                e.currentTarget.style.filter = 'brightness(1.3) drop-shadow(0 0 10px rgba(255, 215, 0, 0.5))';
+                e.currentTarget.style.filter = 'brightness(1.3) drop-shadow(0 0 10px rgba(212, 175, 55, 0.5))';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'scale(1)';
@@ -54,7 +63,18 @@ const Navigation: React.FC = () => {
             />
             
           </Link>
-          <nav className="nav">
+          
+          {/* Mobile Navigation Toggle */}
+          <button 
+            className="mobile-nav-toggle"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle mobile navigation menu"
+          >
+            {isMobileMenuOpen ? '✕' : '☰'}
+          </button>
+          
+          {/* Desktop Navigation */}
+          <nav className="nav desktop-nav">
             {links.map((l) => (
               <NavLink
                 key={l.to}
@@ -104,6 +124,59 @@ const Navigation: React.FC = () => {
               </>
             )}
           </nav>
+          
+          {/* Mobile Navigation Menu */}
+          <div className={`mobile-nav-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+            <nav className="nav mobile-nav">
+              {links.map((l) => (
+                <NavLink
+                  key={l.to}
+                  to={l.to}
+                  className={({ isActive }) => isActive ? 'active' : undefined}
+                  onClick={closeMobileMenu}
+                >
+                  {l.label}
+                </NavLink>
+              ))}
+              
+              {/* Admin links - only visible when authenticated */}
+              {isAuthenticated && (
+                <>
+                  <NavLink
+                    to="/admin/products"
+                    className={({ isActive }) => isActive ? 'active' : undefined}
+                    onClick={closeMobileMenu}
+                    style={{ 
+                      color: 'var(--color-gold)',
+                      fontSize: '0.9rem'
+                    }}
+                  >
+                    🔧 Admin
+                  </NavLink>
+                  <button
+                    onClick={() => {
+                      logout();
+                      closeMobileMenu();
+                    }}
+                    style={{
+                      background: 'rgba(255, 0, 0, 0.1)',
+                      border: '1px solid rgba(255, 0, 0, 0.3)',
+                      color: '#ff6b6b',
+                      padding: '8px 16px',
+                      borderRadius: '6px',
+                      fontSize: '0.8rem',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      width: '100%',
+                      marginTop: '8px'
+                    }}
+                  >
+                    Logout
+                  </button>
+                </>
+              )}
+            </nav>
+          </div>
         </div>
       </div>
     </header>

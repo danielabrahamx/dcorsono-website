@@ -9,6 +9,7 @@ import Placeholder from './components/pages/Placeholder';
 import ProductAdmin from './components/admin/ProductAdmin';
 import { AuthProvider } from './components/auth/AdminAuth';
 import './App.css';
+import './mobile-optimization.css';
 
 const HomePage: React.FC = () => {
   return (
