@@ -281,9 +281,7 @@ const Gallery: React.FC<GalleryProps> = ({
                         </div>
                       </div>
                     </div>
-                    <div className="item-info">
-                      <h4>{item.name}</h4>
-                    </div>
+                    {/* Removed item-info section for clean, label-free gallery */}
                   </div>
                 </motion.div>
               ))}
