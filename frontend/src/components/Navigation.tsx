@@ -7,13 +7,13 @@ const Navigation: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const links = [
-    { to: '/', label: 'Home' },
-    { to: '/corsono', label: 'Corsono' },
-    { to: '/corsono-gallery', label: 'Gallery' },
-    { to: '/art-gallery', label: 'Art' },
-    { to: '/inner-library', label: 'Inner Library' },
-    { to: '/about', label: 'About' },
-    { to: '/contact', label: 'Contact' }
+    { to: '/', label: 'HOME' },
+    { to: '/corsono', label: 'CORSONO' },
+    { to: '/corsono-gallery', label: 'GALLERY' },
+    { to: '/art-gallery', label: 'ART' },
+    { to: '/inner-library', label: 'INNER LIBRARY' },
+    { to: '/about', label: 'ABOUT' },
+    { to: '/contact', label: 'CONTACT' }
   ];
 
   const toggleMobileMenu = () => {
@@ -27,8 +27,9 @@ const Navigation: React.FC = () => {
   return (
     <header className="header">
       <div className="container">
-        <div className="header-content" style={{ gap: 16 }}>
-          <Link to="/" className="brand" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div className="header-content">
+          {/* Logo */}
+          <Link to="/" className="brand">
             <img 
               src="/images/logo.png?v=1" 
               alt="D'Corsono Logo" 
@@ -50,39 +51,46 @@ const Navigation: React.FC = () => {
               }}
               onError={(e) => {
                 console.error('Logo failed to load:', e.currentTarget.src);
-                // Fallback to text if image fails
                 e.currentTarget.style.display = 'none';
-                const fallbackText = e.currentTarget.nextElementSibling as HTMLElement;
-                if (fallbackText && fallbackText.style) {
-                  fallbackText.style.marginLeft = '0';
-                }
-              }}
-              onLoad={(e) => {
-                console.log('Logo loaded successfully:', e.currentTarget.src);
               }}
             />
-            
           </Link>
           
-          {/* Mobile Navigation Toggle */}
+          {/* Mobile Navigation Toggle - Only visible on mobile */}
           <button 
             className="mobile-nav-toggle"
             onClick={toggleMobileMenu}
             aria-label="Toggle mobile navigation menu"
+            style={{
+              display: 'none',
+              background: 'none',
+              border: 'none',
+              color: 'var(--color-gold)',
+              fontSize: '24px',
+              cursor: 'pointer',
+              padding: '8px',
+              borderRadius: '4px',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(212, 175, 55, 0.1)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'none';
+            }}
           >
             {isMobileMenuOpen ? '✕' : '☰'}
           </button>
           
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Hidden on Mobile */}
           <nav className="nav desktop-nav">
-            {links.map((l) => (
+            {links.map((link) => (
               <NavLink
-                key={l.to}
-                to={l.to}
+                key={link.to}
+                to={link.to}
                 className={({ isActive }) => isActive ? 'active' : undefined}
-                style={{ marginRight: 16 }}
               >
-                {l.label}
+                {link.label}
               </NavLink>
             ))}
             
@@ -93,7 +101,6 @@ const Navigation: React.FC = () => {
                   to="/admin/products"
                   className={({ isActive }) => isActive ? 'active' : undefined}
                   style={{ 
-                    marginRight: 16,
                     color: 'var(--color-gold)',
                     fontSize: '0.9rem'
                   }}
@@ -125,17 +132,17 @@ const Navigation: React.FC = () => {
             )}
           </nav>
           
-          {/* Mobile Navigation Menu */}
+          {/* Mobile Navigation Menu - Only visible when toggled */}
           <div className={`mobile-nav-menu ${isMobileMenuOpen ? 'open' : ''}`}>
             <nav className="nav mobile-nav">
-              {links.map((l) => (
+              {links.map((link) => (
                 <NavLink
-                  key={l.to}
-                  to={l.to}
+                  key={link.to}
+                  to={link.to}
                   className={({ isActive }) => isActive ? 'active' : undefined}
                   onClick={closeMobileMenu}
                 >
-                  {l.label}
+                  {link.label}
                 </NavLink>
               ))}
               
