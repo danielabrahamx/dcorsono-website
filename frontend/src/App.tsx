@@ -7,6 +7,8 @@ import Footer from './components/Footer';
 import CorsonoShop from './components/shop/CorsonoShop';
 import Placeholder from './components/pages/Placeholder';
 import ProductAdmin from './components/admin/ProductAdmin';
+import BlogPost from './components/BlogPost';
+import InnerLibrary from './components/InnerLibrary';
 import { AuthProvider } from './components/auth/AdminAuth';
 import './App.css';
 import './mobile-optimization.css';
@@ -159,7 +161,8 @@ const App: React.FC = () => {
               />
             } 
           />
-          <Route path="/inner-library" element={<Placeholder title="Inner Library" description="Coming soon" />} />
+          <Route path="/inner-library" element={<InnerLibrary />} />
+          <Route path="/inner-library/blog/:id" element={<BlogPost />} />
           <Route path="/about" element={<Placeholder title="About" description="Coming soon" />} />
           <Route path="/contact" element={<Placeholder title="Contact" description="Coming soon" />} />
           <Route path="/admin/products" element={<ProductAdmin />} />
