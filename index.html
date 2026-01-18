@@ -1,1001 +1,635 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D'Corsono - Where Consciousness Meets Creativity</title>
-    <meta name="description" content="Explore the intersection of clothing, technology, occult wisdom, and martial arts mastery. D'Corsono represents consciousness as an active force.">
-    
-         <!-- Fonts -->
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=UnifrakturMaguntia&family=MedievalSharp&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="static/css/main.css">
-    <link rel="stylesheet" href="static/css/components.css">
-    
-         <style>
-         /* Magical Typography & Mystical Styling */
-         :root {
-             --font-magical: 'Cinzel', serif;
-             --font-mystical: 'Crimson Text', serif;
-             --font-occult: 'UnifrakturMaguntia', cursive;
-             --font-medieval: 'MedievalSharp', cursive;
-             --font-vintage: 'IM Fell English', serif;
-         }
-         
-         /* Global mystical typography */
-         .hero-title, .section-title, .facet-title, .brand-name, .consciousness-title {
-             font-family: var(--font-magical);
-             font-weight: 600;
-             letter-spacing: 0.05em;
-             text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-         }
-         
-         .hero-subtitle, .section-subtitle, .facet-description, .hero-description {
-             font-family: var(--font-mystical);
-             font-style: italic;
-             font-weight: 400;
-             line-height: 1.8;
-         }
-         
-         .brand-text {
-             font-family: var(--font-occult);
-             font-size: 1.8rem;
-             letter-spacing: 0.1em;
-         }
-         
-         .nav-link {
-             font-family: var(--font-magical);
-             font-weight: 500;
-             letter-spacing: 0.03em;
-         }
-         
-         .category-title, .library-section-title, .wisdom-title {
-             font-family: var(--font-magical);
-             font-weight: 600;
-             letter-spacing: 0.04em;
-         }
-         
-         .category-description, .wisdom-description, .blog-excerpt {
-             font-family: var(--font-mystical);
-             font-style: italic;
-             line-height: 1.7;
-         }
-         
-         .btn {
-             font-family: var(--font-magical);
-             font-weight: 500;
-             letter-spacing: 0.02em;
-             text-transform: uppercase;
-         }
-         
-         /* Mystical text effects */
-         .hero-title-line {
-             background: linear-gradient(135deg, #FFD700, #B8860B, #FFD700);
-             background-size: 200% 200%;
-             -webkit-background-clip: text;
-             -webkit-text-fill-color: transparent;
-             background-clip: text;
-             animation: shimmer 3s ease-in-out infinite;
-         }
-         
-         @keyframes shimmer {
-             0%, 100% { background-position: 0% 50%; }
-             50% { background-position: 100% 50%; }
-         }
-         
-         /* Enhanced mystical styling */
-         .facet-card, .gallery-category, .wisdom-item {
-             border: 2px solid rgba(255, 215, 0, 0.4);
-             background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(20,20,20,0.6));
-             backdrop-filter: blur(10px);
-             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-         }
-         
-         .facet-card:hover, .gallery-category:hover, .wisdom-item:hover {
-             border-color: rgba(255, 215, 0, 0.8);
-             box-shadow: 0 12px 40px rgba(255, 215, 0, 0.2);
-             transform: translateY(-8px);
-         }
-         
-         /* Inline styles for immediate functionality */
-         .demo-notice {
+    <title>Corsono - Heart Sound</title>
+    <meta name="description" content="Corsono - Heart Sound. Minimalist luxury clothing.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --text: #ffffff;
+            --text-muted: #666666;
+            --font-display: 'Cinzel', serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header - centered logo with tagline */
+        .header {
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: 0.3em;
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+        }
+
+        .tagline {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .cart-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            letter-spacing: 0.3em;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .cart-btn {
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: var(--text);
+            color: var(--bg);
+            font-size: 0.6rem;
+            padding: 2px 5px;
+            border-radius: 10px;
+        }
+
+        /* Main - Product Grid */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Product Avatar */
+        .product {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .product:hover {
+            transform: translateY(-8px);
+        }
+
+        .product-avatar {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: transparent;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-avatar img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .product-placeholder {
+            color: #222;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+        }
+
+        .product-name {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+            color: var(--text-muted);
+        }
+
+        .product-price {
+            font-size: 0.875rem;
+            color: var(--text);
+        }
+
+        .sold-out-tag {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: var(--text);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            padding: 0.5rem 1rem;
+            text-transform: uppercase;
+        }
+
+        .product.sold-out {
+            opacity: 0.5;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #111;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .modal-image {
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-image img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+        }
+
+        .modal-info {
+            padding: 2rem;
+        }
+
+        .modal-name {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-price {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .size-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .sizes {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .size-btn {
+            padding: 0.5rem 1rem;
+            background: none;
+            border: 1px solid #333;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .size-btn:hover,
+        .size-btn.active {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .add-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--text);
+            border: none;
+            color: var(--bg);
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .add-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Cart Drawer */
+        .cart-drawer {
             position: fixed;
             top: 0;
-            left: 0;
+            right: 0;
             width: 100%;
-            background: linear-gradient(135deg, #FFD700, #B8860B);
-            color: #000;
-            text-align: center;
-            padding: 10px;
-            font-weight: 600;
-            z-index: 1001;
+            max-width: 350px;
+            height: 100vh;
+            background: #111;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
         }
-        
-        .demo-notice a {
-            color: #000;
-            text-decoration: underline;
+
+        .cart-drawer.open {
+            transform: translateX(0);
         }
-        
-        .main-nav {
-            top: 0;
-        }
-        
-        .hero-section {
-            padding-top: 80px;
-        }
-        
-        .corsono-hero {
-            padding-top: 80px;
-        }
-        
-        .art-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(20,20,20,0.9));
-        }
-        
-        .art-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .art-category {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,215,0,0.3);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .art-category:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255,215,0,0.6);
-            box-shadow: 0 10px 30px rgba(255,215,0,0.2);
-        }
-        
-                 .category-title {
-             color: #FFD700;
-             font-size: 1.5rem;
-             margin-bottom: 1rem;
-             font-family: var(--font-magical);
-             text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-         }
-        
-        .category-description {
-            color: #ccc;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-        
-        .art-preview {
-            margin: 1.5rem 0;
-        }
-        
-        .preview-placeholder {
-            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(184,134,11,0.1));
-            border: 2px dashed rgba(255,215,0,0.3);
-            border-radius: 8px;
-            padding: 3rem 2rem;
-            color: #FFD700;
-            font-weight: 500;
-        }
-        
-        .art-cta {
-            text-align: center;
-            margin-top: 3rem;
-        }
-        
-        .inner-gallery-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(20,20,20,0.9));
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .gallery-category {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,215,0,0.3);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .gallery-category:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255,215,0,0.6);
-            box-shadow: 0 10px 30px rgba(255,215,0,0.2);
-        }
-        
-        .gallery-cta {
-            text-align: center;
-            margin-top: 3rem;
-        }
-        
-        .inner-library-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(0,0,0,0.9));
-        }
-        
-        .library-content {
-            margin: 3rem 0;
-        }
-        
-        .library-section {
-            margin-bottom: 4rem;
-        }
-        
-                 .library-section-title {
-             color: #FFD700;
-             font-size: 2rem;
-             margin-bottom: 2rem;
-             font-family: var(--font-magical);
-             text-align: center;
-             text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
-         }
-        
-        .wisdom-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .wisdom-item {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,215,0,0.2);
-            border-radius: 8px;
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 1.5rem;
-            text-align: center;
+            border-bottom: 1px solid #222;
         }
-        
-        .wisdom-title {
-            color: #FFD700;
-            font-size: 1.2rem;
+
+        .cart-header h3 {
+            font-family: var(--font-display);
+            font-size: 0.875rem;
+            letter-spacing: 0.2em;
+        }
+
+        .cart-items {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .cart-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            background: #0a0a0a;
+        }
+
+        .cart-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #222;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 1rem;
         }
-        
-                 .wisdom-description {
-             color: #ccc;
-             line-height: 1.6;
-         }
-         
-         /* Additional mystical enhancements */
-         .consciousness-symbol, .brand-symbol {
-             filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
-         }
-         
-         .flow-node {
-             font-family: var(--font-magical);
-             font-weight: 600;
-             letter-spacing: 0.03em;
-         }
-         
-         .preview-placeholder {
-             font-family: var(--font-vintage);
-             font-style: italic;
-             letter-spacing: 0.02em;
-         }
-         
-         .footer-title {
-             font-family: var(--font-occult);
-             font-size: 1.5rem;
-             letter-spacing: 0.08em;
-         }
-         
-         .footer-subtitle {
-             font-family: var(--font-magical);
-             font-weight: 600;
-             letter-spacing: 0.03em;
-         }
-         
-         /* Mystical section backgrounds */
-         .hero-section, .corsono-hero {
-             background: radial-gradient(ellipse at center, rgba(0,0,0,0.9) 0%, rgba(20,20,20,0.95) 70%, rgba(0,0,0,1) 100%);
-         }
-         
-         .facets-section {
-             background: linear-gradient(135deg, rgba(0,0,0,0.95), rgba(30,30,30,0.9), rgba(0,0,0,0.95));
-         }
-         
-         /* Enhanced button styling */
-         .btn-primary {
-             background: linear-gradient(135deg, #FFD700, #B8860B);
-             border: 2px solid rgba(255, 215, 0, 0.6);
-             box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
-             transition: all 0.3s ease;
-         }
-         
-         .btn-primary:hover {
-             background: linear-gradient(135deg, #B8860B, #FFD700);
-             box-shadow: 0 6px 25px rgba(255, 215, 0, 0.5);
-             transform: translateY(-2px);
-         }
-         
-         .btn-outline {
-             border: 2px solid rgba(255, 215, 0, 0.6);
-             color: #FFD700;
-             background: transparent;
-             transition: all 0.3s ease;
-         }
-         
-         .btn-outline:hover {
-             background: rgba(255, 215, 0, 0.1);
-             border-color: rgba(255, 215, 0, 0.8);
-             box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-         }
-    </style>
-</head>
-<body class="liquid-glass-theme">
 
-
-    <!-- Navigation -->
-    <nav class="main-nav" role="navigation" aria-label="Main navigation">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <a href="/" class="brand-logo">
-                    <span class="brand-text">D'Corsono</span>
-                </a>
-            </div>
-            
-            <div class="nav-menu" id="nav-menu">
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="#corsono" class="nav-link">Corsono</a>
-                    </li>
-                                         <li class="nav-item">
-                         <a href="#inner-gallery" class="nav-link">Inner Gallery</a>
-                     </li>
-                     <li class="nav-item">
-                         <a href="#inner-library" class="nav-link">Inner Library</a>
-                     </li>
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#contact" class="nav-link">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="nav-actions">
-                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu">
-                    <span class="hamburger"></span>
-                </button>
-                <a href="#cart" class="cart-icon" aria-label="Shopping cart">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 22a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-                        <path d="M20 22a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-                    </svg>
-                    <span class="cart-count" id="cart-count">0</span>
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="main-content" role="main">
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-background">
-                <div class="hero-particles" id="hero-particles"></div>
-                <div class="hero-overlay"></div>
-            </div>
-            
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">
-                        <span class="hero-title-line">D'Corsono</span>
-                        <span class="hero-subtitle">Where Consciousness Meets Creativity</span>
-                    </h1>
-                    <p class="hero-description">
-                        A journey through the alchemy of being, where ancient wisdom meets modern innovation, 
-                        and every act is an expression of conscious awareness.
-                    </p>
-                    <div class="hero-actions">
-                        <a href="#corsono" class="btn btn-primary">Explore Corsono</a>
-                        <a href="#about" class="btn btn-secondary">Discover More</a>
-                    </div>
-                </div>
-                
-                <div class="hero-visual">
-                    <div class="consciousness-symbol">
-                        <div class="symbol-ring outer"></div>
-                        <div class="symbol-ring middle"></div>
-                        <div class="symbol-ring inner"></div>
-                        <div class="symbol-center"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Facets Section -->
-        <section class="facets-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">The Many Facets of Consciousness</h2>
-                    <p class="section-subtitle">
-                        Each aspect represents a different expression of the same underlying truth: 
-                        consciousness is not a thing, but an act.
-                    </p>
-                </div>
-                
-                                 <div class="facets-grid">
-                     <!-- Corsono Facet -->
-                     <div class="facet-card" data-facet="corsono">
-                         <div class="facet-icon">
-                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                 <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                             </svg>
-                         </div>
-                         <h3 class="facet-title">Corsono</h3>
-                         <p class="facet-description">
-                             Quiet luxury clothing brand embodying the alchemy of style and consciousness.
-                         </p>
-                         <a href="#corsono" class="facet-link">Explore Collection</a>
-                     </div>
-                     
-                     <!-- Inner Gallery Facet -->
-                     <div class="facet-card" data-facet="inner-gallery">
-                         <div class="facet-icon">
-                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                             </svg>
-                         </div>
-                         <h3 class="facet-title">Inner Gallery</h3>
-                         <p class="facet-description">
-                             Original artwork and AI-generated videos exploring consciousness through visual expression.
-                         </p>
-                         <a href="#inner-gallery" class="facet-link">Enter Gallery</a>
-                     </div>
-                     
-                     <!-- Inner Library Facet -->
-                     <div class="facet-card" data-facet="inner-library">
-                         <div class="facet-icon">
-                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                 <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/>
-                                 <path d="M12 6v6l4 2"/>
-                             </svg>
-                         </div>
-                         <h3 class="facet-title">Inner Library</h3>
-                         <p class="facet-description">
-                             Ancient wisdom, consciousness studies, and creative philosophy from alchemy to modern insights.
-                         </p>
-                         <a href="#inner-library" class="facet-link">Enter Library</a>
-                     </div>
-                 </div>
-            </div>
-        </section>
-
-        <!-- Consciousness as Act Section -->
-        <section class="consciousness-section">
-            <div class="container">
-                <div class="consciousness-content">
-                    <div class="consciousness-text">
-                        <h2 class="consciousness-title">Consciousness as an Act</h2>
-                        <p class="consciousness-description">
-                            Like Hatsu in the world of Hunter x Hunter, consciousness is not a static state 
-                            but a dynamic force that manifests through action. Every choice, every creation, 
-                            every moment of awareness is an act of consciousness.
-                        </p>
-                        <p class="consciousness-description">
-                            This website is not just a collection of pages, but a living expression of that 
-                            principle. Each section represents a different way consciousness manifests in the world.
-                        </p>
-                        <a href="#blog" class="btn btn-outline">Explore the Philosophy</a>
-                    </div>
-                    
-                    <div class="consciousness-visual">
-                        <div class="flow-diagram">
-                            <div class="flow-node" data-node="awareness">
-                                <span>Awareness</span>
-                            </div>
-                            <div class="flow-arrow"></div>
-                            <div class="flow-node" data-node="intention">
-                                <span>Intention</span>
-                            </div>
-                            <div class="flow-arrow"></div>
-                            <div class="flow-node" data-node="action">
-                                <span>Action</span>
-                            </div>
-                            <div class="flow-arrow"></div>
-                            <div class="flow-node" data-node="manifestation">
-                                <span>Manifestation</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Corsono Section -->
-        <section id="corsono" class="corsono-hero">
-            <div class="hero-background">
-                <div class="hero-overlay"></div>
-            </div>
-            
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">
-                        <span class="brand-name">Corsono</span>
-                        <span class="hero-subtitle">Quiet Luxury, Conscious Style</span>
-                    </h1>
-                    <p class="hero-description">
-                        Where consciousness meets craftsmanship. Each piece embodies the alchemy of style, 
-                        designed for those who understand that true luxury is an act of awareness.
-                    </p>
-                    <div class="hero-actions">
-                        <a href="#collection" class="btn btn-primary">Explore Collection</a>
-                        <a href="#philosophy" class="btn btn-secondary">Our Philosophy</a>
-                    </div>
-                </div>
-                
-                <div class="hero-visual">
-                    <div class="brand-symbol">
-                        <div class="symbol-circle"></div>
-                        <div class="symbol-accent"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Inner Gallery Section -->
-        <section id="inner-gallery" class="inner-gallery-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Inner Gallery</h2>
-                    <p class="section-subtitle">
-                        A sacred space for original artwork and AI-generated videos exploring consciousness through visual expression.
-                    </p>
-                </div>
-                
-                <div class="gallery-grid">
-                    <div class="gallery-category">
-                        <h3 class="category-title">Original Artwork</h3>
-                        <p class="category-description">
-                            Hand-crafted pieces exploring themes of consciousness, transformation, and spiritual symbolism.
-                        </p>
-                        <div class="gallery-preview">
-                            <div class="preview-placeholder">
-                                <span>Coming Soon</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-category">
-                        <h3 class="category-title">Imagination Cinema</h3>
-                        <p class="category-description">
-                            AI-generated videos and visual experiences exploring the depths of creative consciousness.
-                        </p>
-                        <div class="gallery-preview">
-                            <div class="preview-placeholder">
-                                <span>Coming Soon</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gallery-cta">
-                    <a href="#inner-gallery" class="btn btn-primary">Enter Gallery</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Philosophy Section -->
-        <section class="philosophy-section" id="philosophy">
-            <div class="container">
-                <div class="philosophy-content">
-                    <div class="philosophy-text">
-                        <h2 class="section-title">The Corsono Philosophy</h2>
-                        <p class="philosophy-description">
-                            Corsono represents more than clothing—it's a manifestation of consciousness in material form. 
-                            Each piece is crafted with intention, embodying the principle that consciousness is an act, 
-                            not a state of being.
-                        </p>
-                        <div class="philosophy-points">
-                            <div class="philosophy-point">
-                                <div class="point-icon">🌟</div>
-                                <h3>Conscious Craftsmanship</h3>
-                                <p>Every detail considered, every stitch intentional</p>
-                            </div>
-                            <div class="philosophy-point">
-                                <div class="point-icon">⚡</div>
-                                <h3>Dynamic Energy</h3>
-                                <p>Clothing that moves with consciousness, not against it</p>
-                            </div>
-                            <div class="philosophy-point">
-                                <div class="point-icon">🔮</div>
-                                <h3>Alchemical Design</h3>
-                                <p>Transforming base materials into expressions of awareness</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="philosophy-visual">
-                        <div class="philosophy-image">
-                            <div class="image-placeholder">
-                                <span>Consciousness in Motion</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Collection Section -->
-        <section class="collection-section" id="collection">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">The Collection</h2>
-                    <p class="section-subtitle">
-                        Each piece is a statement of consciousness, designed for those who wear their awareness.
-                    </p>
-                </div>
-                
-                <!-- Category Filter -->
-                <div class="category-filter">
-                    <button class="filter-btn active" data-category="all">All</button>
-                    <button class="filter-btn" data-category="t-shirts">T-Shirts</button>
-                    <button class="filter-btn" data-category="hoodies">Hoodies</button>
-                    <button class="filter-btn" data-category="outerwear">Outerwear</button>
-                </div>
-                
-                <!-- Products Grid -->
-                <div class="products-grid" id="products-grid">
-                    <!-- Products will be loaded dynamically via JavaScript -->
-                </div>
-                
-                <!-- Load More Button -->
-                <div class="load-more-container">
-                    <button class="btn btn-outline" id="load-more-btn">Load More</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Inner Library Section -->
-        <section id="inner-library" class="inner-library-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">The Inner Library</h2>
-                    <p class="section-subtitle">
-                        A repository of wisdom, insights, and explorations into consciousness, creativity, and the alchemy of being.
-                    </p>
-                </div>
-                
-                <div class="library-content">
-                    <div class="library-section">
-                        <h3 class="library-section-title">Latest Insights</h3>
-                        <div class="blog-grid">
-                            <article class="blog-card">
-                                <div class="blog-image">
-                                    <div class="image-placeholder">
-                                        <span>Alchemy & Consciousness</span>
-                                    </div>
-                                </div>
-                                <div class="blog-content">
-                                    <div class="blog-categories">
-                                        <span class="category occult">Occult Science</span>
-                                        <span class="category consciousness">Consciousness</span>
-                                    </div>
-                                    <h3 class="blog-title">The Alchemy of Consciousness: Beyond Material Reality</h3>
-                                    <p class="blog-excerpt">
-                                        Exploring how ancient alchemical wisdom reveals consciousness as an active, 
-                                        dynamic force rather than a passive state of being.
-                                    </p>
-                                    <a href="#blog" class="blog-link">Read More</a>
-                                </div>
-                            </article>
-                            
-                            <article class="blog-card">
-                                <div class="blog-image">
-                                    <div class="image-placeholder">
-                                        <span>Consciousness & Art</span>
-                                    </div>
-                                </div>
-                                <div class="blog-content">
-                                    <div class="blog-categories">
-                                        <span class="category art">Art & Creativity</span>
-                                        <span class="category consciousness">Consciousness</span>
-                                    </div>
-                                    <h3 class="blog-title">Art as a Portal to Higher Consciousness</h3>
-                                    <p class="blog-excerpt">
-                                        How creative expression becomes a gateway to deeper awareness and spiritual understanding.
-                                    </p>
-                                    <a href="#blog" class="blog-link">Read More</a>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                    
-                                         <div class="library-section">
-                         <h3 class="library-section-title">Occult Science & Wisdom</h3>
-                         <div class="wisdom-grid">
-                             <div class="wisdom-item">
-                                 <h4 class="wisdom-title">Ancient Alchemy</h4>
-                                 <p class="wisdom-description">Texts and insights from the alchemical tradition, exploring the transformation of consciousness</p>
-                             </div>
-                             <div class="wisdom-item">
-                                 <h4 class="wisdom-title">Gnostic Wisdom</h4>
-                                 <p class="wisdom-description">Ancient knowledge about consciousness, reality, and spiritual awakening</p>
-                             </div>
-                             <div class="wisdom-item">
-                                 <h4 class="wisdom-title">Kemetic Science</h4>
-                                 <p class="wisdom-description">Egyptian spiritual and scientific knowledge about consciousness and creation</p>
-                             </div>
-                             <div class="wisdom-item">
-                                 <h4 class="wisdom-title">Consciousness Studies</h4>
-                                 <p class="wisdom-description">Modern explorations of awareness, meditation, and spiritual development</p>
-                             </div>
-                             <div class="wisdom-item">
-                                 <h4 class="wisdom-title">Creative Philosophy</h4>
-                                 <p class="wisdom-description">The intersection of art, consciousness, and transformation</p>
-                             </div>
-                         </div>
-                     </div>
-                </div>
-                
-                <div class="library-cta">
-                    <a href="#inner-library" class="btn btn-primary">Enter the Library</a>
-                </div>
-            </div>
-        </section>
-
-
-
-        <!-- Contact CTA -->
-        <section class="contact-cta" id="contact">
-            <div class="container">
-                <div class="cta-content">
-                    <h2 class="cta-title">Ready to Explore?</h2>
-                                         <p class="cta-description">
-                         Whether you're interested in consciousness, clothing, creativity, or ancient wisdom, 
-                         there's a path here for you. Let's connect and explore together.
-                     </p>
-                    <div class="cta-actions">
-                        <a href="#contact" class="btn btn-primary">Get in Touch</a>
-                        <a href="mailto:danielftabraham@outlook.com" class="btn btn-whatsapp">Email</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Setup Instructions -->
-        <section id="setup" class="facets-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Setup Instructions</h2>
-                    <p class="section-subtitle">
-                        To run the full D'Corsono website with backend functionality, follow these steps:
-                    </p>
-                </div>
-                
-                <div class="facets-grid">
-                    <div class="facet-card">
-                        <div class="facet-icon">🦀</div>
-                        <h3 class="facet-title">Install Rust</h3>
-                        <p class="facet-description">
-                            Install Rust programming language from rustup.rs
-                        </p>
-                        <a href="https://rustup.rs" target="_blank" class="facet-link">Install Rust</a>
-                    </div>
-                    
-                    <div class="facet-card">
-                        <div class="facet-icon">🐘</div>
-                        <h3 class="facet-title">Install PostgreSQL</h3>
-                        <p class="facet-description">
-                            Install and configure PostgreSQL database
-                        </p>
-                        <a href="https://www.postgresql.org/download/" target="_blank" class="facet-link">Download</a>
-                    </div>
-                    
-                    <div class="facet-card">
-                        <div class="facet-icon">⚙️</div>
-                        <h3 class="facet-title">Configure Environment</h3>
-                        <p class="facet-description">
-                            Set up environment variables and database connection
-                        </p>
-                        <a href="#setup" class="facet-link">View README</a>
-                    </div>
-                    
-                    <div class="facet-card">
-                        <div class="facet-icon">🚀</div>
-                        <h3 class="facet-title">Run the Server</h3>
-                        <p class="facet-description">
-                            Start the Rust backend server with cargo run
-                        </p>
-                        <a href="#setup" class="facet-link">Run Commands</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3 class="footer-title">D'Corsono</h3>
-                <p class="footer-description">
-                    Where consciousness meets creativity. A journey through clothing, technology, wisdom, and mastery.
-                </p>
-            </div>
-            
-                            <div class="footer-section">
-                    <h4 class="footer-subtitle">Brands</h4>
-                    <ul class="footer-links">
-                        <li><a href="#corsono">Corsono Clothing</a></li>
-                    </ul>
-                </div>
-                
-                                 <div class="footer-section">
-                     <h4 class="footer-subtitle">Explore</h4>
-                     <ul class="footer-links">
-                         <li><a href="#inner-gallery">Inner Gallery</a></li>
-                         <li><a href="#inner-library">Inner Library</a></li>
-                     </ul>
-                 </div>
-            
-            <div class="footer-section">
-                <h4 class="footer-subtitle">Connect</h4>
-                <ul class="footer-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="mailto:danielftabraham@outlook.com">Email</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h4 class="footer-subtitle">Newsletter</h4>
-                <form class="newsletter-form" id="newsletter-form">
-                    <input type="email" placeholder="Enter your email" required class="newsletter-input">
-                    <button type="submit" class="newsletter-button">Subscribe</button>
-                </form>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <div class="footer-bottom-content">
-                <p>&copy; 2024 D'Corsono. All rights reserved.</p>
-                <div class="footer-legal">
-                    <a href="#privacy">Privacy Policy</a>
-                    <a href="#terms">Terms of Service</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="static/js/main.js"></script>
-    
-    <script>
-        // Demo-specific functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Load sample products
-            loadDemoProducts();
-            
-            // Initialize category filtering
-            initDemoCategoryFilter();
-            
-            // Initialize newsletter form
-            initDemoNewsletterForm();
-        });
-        
-        function loadDemoProducts() {
-            const products = [
-                {
-                    id: 1,
-                    name: 'Corsono Classic Tee',
-                    price: 45.00,
-                    category: 't-shirts',
-                    description: 'Premium black t-shirt with subtle gold accents'
-                },
-                {
-                    id: 2,
-                    name: 'Corsono Luxury Hoodie',
-                    price: 89.00,
-                    category: 'hoodies',
-                    description: 'Black hoodie with gold embroidery detailing'
-                },
-                {
-                    id: 3,
-                    name: 'Corsono Statement Jacket',
-                    price: 125.00,
-                    category: 'outerwear',
-                    description: 'Bold black jacket with gold hardware'
-                }
-            ];
-            
-            renderDemoProducts(products);
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--text);
+            border: none;
+            color: var(--bg);
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            cursor: pointer;
         }
-        
-        function renderDemoProducts(products) {
-            const grid = document.getElementById('products-grid');
-            if (!grid) return;
-            
-            grid.innerHTML = '';
-            
-            products.forEach(product => {
-                const productCard = createDemoProductCard(product);
-                grid.appendChild(productCard);
-            });
-        }
-        
-        function createDemoProductCard(product) {
-            const card = document.createElement('div');
-            card.className = 'product-card';
-            card.innerHTML = `
-                <div class="product-image">
-                    <div class="image-placeholder">
-                        <span>${product.name}</span>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">${product.name}</h3>
-                    <div class="product-price">$${product.price.toFixed(2)}</div>
-                    <div class="product-category">${product.category}</div>
-                    <button class="btn btn-outline quick-view-btn" data-product-id="${product.id}">Quick View</button>
-                </div>
-            `;
-            
-            return card;
-        }
-        
-        function initDemoCategoryFilter() {
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const category = this.dataset.category;
-                    filterDemoProducts(category);
-                });
-            });
-        }
-        
-        function filterDemoProducts(category) {
-            console.log('Filtering by category:', category);
-            // For demo, just reload all products
-            loadDemoProducts();
-        }
-        
-        function initDemoNewsletterForm() {
-            const form = document.getElementById('newsletter-form');
-            
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const email = this.querySelector('.newsletter-input').value.trim();
-                    
-                    if (email && isValidEmail(email)) {
-                        alert('Thank you for subscribing to D\'Corsono updates!');
-                        this.querySelector('.newsletter-input').value = '';
-                    } else {
-                        alert('Please enter a valid email address.');
-                    }
-                });
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .modal-grid {
+                grid-template-columns: 1fr;
             }
         }
-        
-        function isValidEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
+
+        @media (max-width: 480px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
         }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="/" class="logo">CORSONO</a>
+        <p class="tagline">'Heart sounds'</p>
+        <button class="cart-btn" onclick="openCart()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M6 6h15l-1.5 9h-12z" />
+                <circle cx="9" cy="20" r="1" />
+                <circle cx="18" cy="20" r="1" />
+            </svg>
+            <span class="cart-count" id="cart-count">0</span>
+        </button>
+    </header>
+
+    <!-- Products - The Only Main Content -->
+    <main>
+        <div class="products">
+            <!-- Golden Dawn Hoodie -->
+            <div class="product" onclick="openProduct('golden-dawn-hoodie')">
+                <div class="product-avatar">
+                    <img src="images/golden-dawn-tracksuit.png" alt="Golden Dawn Hoodie">
+                </div>
+                <p class="product-name">Golden Dawn Hoodie</p>
+                <p class="product-price">£90</p>
+            </div>
+
+            <!-- Golden Dawn Track Pants -->
+            <div class="product" onclick="openProduct('golden-dawn-track-pants')">
+                <div class="product-avatar">
+                    <img src="images/golden-dawn-tracksuit.png" alt="Golden Dawn Track Pants">
+                </div>
+                <p class="product-name">Golden Dawn Track Pants</p>
+                <p class="product-price">£85</p>
+            </div>
+
+            <!-- Golden Dawn Full Set -->
+            <div class="product" onclick="openProduct('golden-dawn-full-set')">
+                <div class="product-avatar">
+                    <img src="images/golden-dawn-tracksuit.png" alt="Golden Dawn Full Set">
+                </div>
+                <p class="product-name">Golden Dawn Full Set</p>
+                <p class="product-price">£175</p>
+            </div>
+
+            <!-- Flyheart Jacket - Sold Out -->
+            <div class="product sold-out" onclick="openProduct('flyheart-jacket')">
+                <div class="product-avatar">
+                    <span class="product-placeholder">CORSONO</span>
+                    <span class="sold-out-tag">Sold Out</span>
+                </div>
+                <p class="product-name">Flyheart Wax Denim Jacket</p>
+                <p class="product-price">£150</p>
+            </div>
+
+            <!-- Flyheart Jeans - Sold Out -->
+            <div class="product sold-out" onclick="openProduct('flyheart-jeans')">
+                <div class="product-avatar">
+                    <span class="product-placeholder">CORSONO</span>
+                    <span class="sold-out-tag">Sold Out</span>
+                </div>
+                <p class="product-name">Flyheart Wax Denim Jeans</p>
+                <p class="product-price">£110</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Product Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content" id="modal-content">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <aside class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3>CART</h3>
+            <button onclick="closeCart()"
+                style="background:none;border:none;color:white;font-size:1.5rem;cursor:pointer">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cart-total">£0</span>
+            </div>
+            <button class="checkout-btn">CHECKOUT</button>
+        </div>
+    </aside>
+
+    <script>
+        const products = {
+            'golden-dawn-hoodie': {
+                name: 'Golden Dawn Hoodie',
+                price: 90,
+                desc: '100% French Terry Cotton',
+                sizes: ['S', 'M', 'L', 'XL'],
+                inStock: true,
+                stripeLink: 'https://buy.stripe.com/6oU28seVi5PLbrBaom7wA03'
+            },
+            'golden-dawn-track-pants': {
+                name: 'Golden Dawn Track Pants',
+                price: 85,
+                desc: '100% French Terry Cotton',
+                sizes: ['S', 'M', 'L', 'XL'],
+                inStock: true,
+                stripeLink: 'https://buy.stripe.com/cNi6oI00o3HD1R16867wA04'
+            },
+            'golden-dawn-full-set': {
+                name: 'Golden Dawn Full Set',
+                price: 175,
+                desc: '100% French Terry Cotton',
+                sizes: ['S', 'M', 'L', 'XL'],
+                inStock: true,
+                stripeLink: 'https://buy.stripe.com/bJe00k14s7XTdzJ1RQ7wA05'
+            },
+            'flyheart-jacket': {
+                name: 'Flyheart Wax Denim Jacket',
+                price: 150,
+                desc: '',
+                sizes: ['M', 'L', 'XL'],
+                inStock: false
+            },
+            'flyheart-jeans': {
+                name: 'Flyheart Wax Denim Jeans',
+                price: 110,
+                desc: '',
+                sizes: ['30', '32', '34', '36'],
+                inStock: false
+            }
+        };
+
+        let cart = [];
+
+        function openProduct(id) {
+            const p = products[id];
+            if (!p) return;
+
+            document.getElementById('modal-content').innerHTML = `
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+                <div class="modal-grid">
+                    <div class="modal-image">
+                        ${id.startsWith('golden-dawn')
+                    ? '<img src="images/golden-dawn-tracksuit.png" alt="' + p.name + '">'
+                    : '<div style="color:#222;font-family:var(--font-display);font-size:1rem;letter-spacing:0.2em">CORSONO</div>'
+                }
+                    </div>
+                    <div class="modal-info">
+                        <h2 class="modal-name">${p.name}</h2>
+                        <p class="modal-price">£${p.price}</p>
+                        <p class="modal-desc">${p.desc}</p>
+                        <p class="size-label">Size</p>
+                        <div class="sizes">
+                            ${p.sizes.map(s => `<button class="size-btn" onclick="this.parentElement.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">${s}</button>`).join('')}
+                        </div>
+                        ${p.stripeLink
+                    ? `<a href="${p.stripeLink}" class="add-btn" style="display:block;text-align:center;text-decoration:none">BUY NOW</a>`
+                    : `<button class="add-btn" disabled>SOLD OUT</button>`
+                }
+                    </div>
+                </div>
+            `;
+            document.getElementById('product-modal').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('product-modal').classList.remove('open');
+        }
+
+        function openCart() {
+            document.getElementById('cart-drawer').classList.add('open');
+        }
+
+        function closeCart() {
+            document.getElementById('cart-drawer').classList.remove('open');
+        }
+
+        function addToCart(id) {
+            const p = products[id];
+            if (!p || !p.inStock) return;
+
+            cart.push({ id, ...p });
+            updateCart();
+            closeModal();
+            openCart();
+        }
+
+        function updateCart() {
+            const items = document.getElementById('cart-items');
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+            items.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div style="width:60px;height:60px;background:#0a0a0a;display:flex;align-items:center;justify-content:center;color:#222;font-size:0.5rem;letter-spacing:0.1em">CORSONO</div>
+                    <div>
+                        <p style="font-size:0.75rem;margin-bottom:0.25rem">${item.name}</p>
+                        <p style="font-size:0.75rem;color:#666">£${item.price}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('cart-count').textContent = cart.length;
+            document.getElementById('cart-total').textContent = `£${total}`;
+        }
+
+        // Close on escape
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                closeModal();
+                closeCart();
+            }
+        });
+
+        // Close modal on overlay click
+        document.getElementById('product-modal').addEventListener('click', e => {
+            if (e.target.id === 'product-modal') closeModal();
+        });
     </script>
 </body>
+
 </html>
-
-
