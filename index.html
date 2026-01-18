@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corsono - Heart Sound</title>
-    <meta name="description" content="Corsono - Heart Sound. Minimalist luxury clothing.">
+    <title>Heart sounds</title>
+    <meta name="description" content="Heart sounds">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,6 +39,24 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+        }
+
+        /* Rotating Logo */
+        .rotating-logo {
+            width: 80px;
+            height: auto;
+            animation: spin 8s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotateY(0deg);
+            }
+
+            to {
+                transform: rotateY(360deg);
+            }
         }
 
         /* Header - centered logo with tagline */
@@ -415,6 +433,7 @@
 <body>
     <!-- Header -->
     <header class="header">
+        <img src="images/corsono-logo.png" alt="Corsono Logo" class="rotating-logo">
         <a href="/" class="logo">CORSONO</a>
         <p class="tagline">'Heart sounds'</p>
         <button class="cart-btn" onclick="openCart()">
